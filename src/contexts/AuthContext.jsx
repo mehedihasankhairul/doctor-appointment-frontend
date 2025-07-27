@@ -56,19 +56,33 @@ export const AuthProvider = ({ children }) => {
   };
 
   // For demo purposes, allow bypassing auth
-  const loginAsDoctor = () => {
-    const mockUser = {
-      id: 'doctor1',
-      name: 'Dr. Smith',
-      email: 'doctor@example.com',
-      role: 'doctor'
-    };
-    const mockToken = 'demo-doctor-token';
-    
-    setUser(mockUser);
-    setToken(mockToken);
-    localStorage.setItem('auth_token', mockToken);
-    apiService.setAuthToken(mockToken);
+  const loginAsDoctor = async () => {
+    try {
+      // Use the PIN to login with the backend
+      const response = await apiService.doctorLogin({
+        pin: '123456',
+        loginType: 'pin'
+      });
+      
+      const { token: authToken, user: userData } = response;
+      
+      setToken(authToken);
+      setUser(userData);
+      localStorage.setItem('auth_token', authToken);
+      apiService.setAuthToken(authToken);
+      
+      console.log('✅ Doctor authenticated successfully:', userData);
+    } catch (error) {
+      console.error('❌ Doctor authentication failed:', error);
+      // Fallback to mock for development
+      const mockUser = {
+        id: 'demo-doctor-id',
+        name: 'Dr. Ganesh',
+        email: 'doctor@drganeshcs.com',
+        role: 'doctor'
+      };
+      setUser(mockUser);
+    }
   };
 
   const value = {
