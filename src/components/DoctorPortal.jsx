@@ -71,6 +71,38 @@ const isCurrentMonth = (date) => {
   return dayjs(selectedDate).isSame(date, 'month');
 };
 
+// Helper function to safely get hospital name
+const getHospitalName = (hospital) => {
+  if (!hospital) return 'Unknown Hospital';
+  
+  // Handle nested object structure
+  if (hospital.name) {
+    if (typeof hospital.name === 'string') {
+      return hospital.name;
+    } else if (hospital.name.name) {
+      return hospital.name.name;
+    }
+  }
+  
+  return 'Unknown Hospital';
+};
+
+// Helper function to safely get hospital ID
+const getHospitalId = (hospital) => {
+  if (!hospital) return 'unknown';
+  
+  // Handle nested object structure
+  if (hospital.id) {
+    if (typeof hospital.id === 'string') {
+      return hospital.id;
+    } else if (hospital.id.id) {
+      return hospital.id.id;
+    }
+  }
+  
+  return 'unknown';
+};
+
 const loadAppointments = async () => {
     setAppointmentsLoading(true);
     console.log('🔄 Loading appointments from API...');
@@ -171,11 +203,16 @@ const loadAppointments = async () => {
   const getAvailableHospitals = () => {
     const hospitalSet = new Set();
     appointments.forEach(appointment => {
-      if (appointment.hospital && appointment.hospital.name) {
-        hospitalSet.add(JSON.stringify({
-          id: appointment.hospital.id,
-          name: appointment.hospital.name
-        }));
+      if (appointment.hospital) {
+        const hospitalName = getHospitalName(appointment.hospital);
+        const hospitalId = getHospitalId(appointment.hospital);
+        
+        if (hospitalName !== 'Unknown Hospital') {
+          hospitalSet.add(JSON.stringify({
+            id: hospitalId,
+            name: hospitalName
+          }));
+        }
       }
     });
     return Array.from(hospitalSet).map(hospitalStr => JSON.parse(hospitalStr));
@@ -190,7 +227,7 @@ const loadAppointments = async () => {
       (appointment.email && appointment.email.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesStatus = statusFilter === "all" || appointment.status === statusFilter;
     const matchesHospital = hospitalFilter === "all" || 
-      (appointment.hospital && appointment.hospital.id === hospitalFilter);
+      (appointment.hospital && getHospitalId(appointment.hospital) === hospitalFilter);
     return matchesDate && matchesSearch && matchesStatus && matchesHospital;
   });
 
@@ -573,7 +610,7 @@ const loadAppointments = async () => {
                                 </span>
                                 {appointment.hospital && (
                                   <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full flex items-center">
-                                    🏥 <span className="hidden sm:inline ml-1">{appointment.hospital.name}</span>
+                                    🏥 <span className="hidden sm:inline ml-1">{getHospitalName(appointment.hospital)}</span>
                                     <span className="sm:hidden ml-1">Hospital</span>
                                   </span>
                                 )}
