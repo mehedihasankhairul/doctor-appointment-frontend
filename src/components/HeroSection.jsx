@@ -10,7 +10,8 @@ const HeroSection = ({ onBookAppointment }) => {
       titleHighlight: "আমাদের প্রতিশ্রুতি",
       description:
         "আপনার স্বাস্থ্য আমাদের কাছে প্রাধান্য পায়। অভিজ্ঞ চিকিৎসকদের কাছ থেকে উচ্চমানের এবং ব্যক্তিগতকৃত চিকিৎসা সেবা নিন।",
-      image: "https://i.ibb.co/1JsGrZt0/image.png",
+      image:
+        "https://png.pngtree.com/png-clipart/20250319/original/pngtree-cartoon-doctors-heart-png-image_20681343.png",
       altText: "বিশেষজ্ঞ চিকিৎসক পরামর্শ",
       features: ["বিশেষজ্ঞ চিকিৎসক", "ব্যক্তিগত সেবা", "উচ্চমানের চিকিৎসা", "দ্রুত অ্যাপয়েন্টমেন্ট"],
     },
@@ -38,7 +39,7 @@ const HeroSection = ({ onBookAppointment }) => {
       description:
         "Complete patient profiling including age and gender-specific care, ensuring personalized treatment plans for optimal health outcomes.",
       image:
-        "https://i.ibb.co/DfssMs3x/diagnosis-treatment-heart-disease-cardiology-patients-cardiovascular-checkup-1135642-73.jpg",
+        "https://media.istockphoto.com/id/1225743855/vector/doctor-visiting-patient-and-explains-the-diagnosis-of-the-disease-in-cartoon-flat.jpg?s=612x612&w=0&k=20&c=jM_jBr0NMUmqi-80QMOPrgjGxUb4ow-eo0Xjmnzq8PU=",
       altText: "Personalized Medical Care",
       features: ["Patient Profiling", "Age-Specific Care", "Gender Considerations", "Follow-up Support"],
     },

@@ -74,11 +74,18 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Address</h4>
-                  <p className="text-gray-600">
-                    123 Health Street<br />
-                    Medical Center, Suite 456<br />
-                    New York, NY 10001
-                  </p>
+                  <div className="text-gray-600 space-y-2">
+                    <div>
+                      <p className="font-medium text-blue-700">Hospital 1 - Ibn Sina Hospital</p>
+                      <p>23 Kha, Dhanmondi R/A Road No 2<br />
+                      Dhaka 1205, Bangladesh</p>
+                    </div>
+                    <div>
+                      <p className="font-medium text-blue-700">Hospital 2 - United Hospital</p>
+                      <p>Plot 15, Road 71, Gulshan 2<br />
+                      Dhaka 1212, Bangladesh</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -92,8 +99,9 @@ const ContactUs = () => {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Phone</h4>
                   <p className="text-gray-600">
-                    Main: (555) 123-4567<br />
-                    Emergency: (555) 987-6543
+                    Main: +880 1711-123456<br />
+                    Emergency: +880 1711-987654<br />
+                    Clinic: +880 2-9612345
                   </p>
                 </div>
               </div>
@@ -108,8 +116,8 @@ const ContactUs = () => {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Email</h4>
                   <p className="text-gray-600">
-                    info@cardiomedicineclinic.com<br />
-                    appointments@cardiomedicineclinic.com
+                    dr.ganeshcs@gmail.com<br />
+                    appointments@drganeshcs.com
                   </p>
                 </div>
               </div>
@@ -122,11 +130,11 @@ const ContactUs = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900">Office Hours</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">Consultation Hours</h4>
                   <div className="text-gray-600">
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p>Saturday: 9:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
+                    <p><strong>Saturday - Thursday:</strong> 10:00 AM - 6:00 PM</p>
+                    <p><strong>Friday:</strong> Closed</p>
+                    <p className="text-sm text-blue-600 mt-2">* Available at both hospitals on consultation days</p>
                   </div>
                 </div>
               </div>
@@ -255,8 +263,8 @@ const ContactUs = () => {
               <h3 className="text-lg font-semibold text-red-800">Emergency Contact</h3>
               <p className="text-red-700">
                 For urgent cardiovascular or medical emergencies, please call our emergency line at{" "}
-                <a href="tel:+15559876543" className="font-bold underline">
-                  (555) 987-6543
+                <a href="tel:+8801711987654" className="font-bold underline">
+                  +880 1711-987654
                 </a>{" "}
                 or visit the nearest emergency room.
               </p>

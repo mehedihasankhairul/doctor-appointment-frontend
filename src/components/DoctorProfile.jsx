@@ -418,7 +418,7 @@ results in coughing, short breath,`,
         </div>
 
         {/* Blog & Content */}
-        <div className="bg-white rounded-lg shadow-lg p-10">
+        <div className="bg-white rounded-lg shadow-lg p-10 mb-8">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
             <span className="mr-3 text-4xl">📝</span>
             Latest Articles & Insights
@@ -434,7 +434,7 @@ results in coughing, short breath,`,
                     {post.title}
                   </h3>
                   <div className="space-x-4 text-sm lg:text-base text-gray-500 mt-2 lg:mt-0">
-                    <span className="font-bold font-mono"> Published: {post.date}</span>
+                    <span className="font-bold font-mono">Published: {post.date}</span>
                   </div>
                 </div>
                 <p className="text-base lg:text-lg text-gray-700 leading-relaxed mb-4 font-light">{post.excerpt}</p>
@@ -446,6 +446,121 @@ results in coughing, short breath,`,
                 </a>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Contact Information */}
+        <div className="bg-white rounded-lg shadow-lg p-10">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-3 text-4xl">📞</span>
+            Contact Dr. Ganesh Chandra Saurav
+          </h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Schedule your appointment or get in touch for any medical inquiries. Available at both hospital locations.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Hospital Locations */}
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white text-xl">🏥</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 ml-4">Hospital Locations</h3>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <p className="font-semibold text-blue-700 mb-1">Ibn Sina Hospital</p>
+                  <p className="text-gray-700 text-sm">23 Kha, Dhanmondi R/A Road No 2<br />Dhaka 1205, Bangladesh</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-blue-700 mb-1">United Hospital</p>
+                  <p className="text-gray-700 text-sm">Plot 15, Road 71, Gulshan 2<br />Dhaka 1212, Bangladesh</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Phone Numbers */}
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white text-xl">📱</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 ml-4">Phone Numbers</h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="font-semibold text-green-700">Main Line</p>
+                  <a href="tel:+8801711123456" className="text-gray-700 hover:text-green-600 transition-colors">
+                    +880 1711-123456
+                  </a>
+                </div>
+                <div>
+                  <p className="font-semibold text-green-700">Emergency</p>
+                  <a href="tel:+8801711987654" className="text-gray-700 hover:text-green-600 transition-colors">
+                    +880 1711-987654
+                  </a>
+                </div>
+                <div>
+                  <p className="font-semibold text-green-700">Clinic</p>
+                  <a href="tel:+88029612345" className="text-gray-700 hover:text-green-600 transition-colors">
+                    +880 2-9612345
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Email & Schedule */}
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white text-xl">✉️</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 ml-4">Email & Schedule</h3>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <p className="font-semibold text-purple-700">Email Addresses</p>
+                  <div className="space-y-1">
+                    <a href="mailto:dr.ganeshcs@gmail.com" className="block text-gray-700 hover:text-purple-600 transition-colors text-sm">
+                      dr.ganeshcs@gmail.com
+                    </a>
+                    <a href="mailto:appointments@drganeshcs.com" className="block text-gray-700 hover:text-purple-600 transition-colors text-sm">
+                      appointments@drganeshcs.com
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-purple-700">Consultation Hours</p>
+                  <div className="text-gray-700 text-sm">
+                    <p><strong>Sat - Thu:</strong> 10:00 AM - 6:00 PM</p>
+                    <p><strong>Friday:</strong> Closed</p>
+                    <p className="text-purple-600 mt-1 text-xs">* Available at both hospitals</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Emergency Notice */}
+          <div className="mt-8 bg-red-50 border border-red-200 rounded-xl p-6">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-lg">🚨</span>
+                </div>
+              </div>
+              <div className="ml-4">
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Emergency Contact</h3>
+                <p className="text-red-700">
+                  For urgent cardiovascular or medical emergencies, please call our emergency line at{" "}
+                  <a href="tel:+8801711987654" className="font-bold underline hover:text-red-800 transition-colors">
+                    +880 1711-987654
+                  </a>{" "}
+                  or visit the nearest emergency room immediately.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
