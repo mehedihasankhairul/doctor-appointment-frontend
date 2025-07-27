@@ -5,8 +5,7 @@ const Navbar = ({ activeSection, onSectionChange }) => {
 
   const navItems = [
     { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'appointment', label: 'Book Appointment', icon: '📅' },
-    { id: 'doctor-portal', label: 'Doctor Portal', icon: '👨‍⚕️' }
+    { id: 'appointment', label: 'Book Appointment', icon: '📅' }
   ];
 
   const handleNavClick = (sectionId) => {
