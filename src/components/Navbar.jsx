@@ -5,6 +5,7 @@ const Navbar = ({ activeSection, onSectionChange }) => {
 
   const navItems = [
     { id: 'home', label: 'Home', icon: '🏠' },
+    { id: 'profile', label: 'Profile', icon: '👨‍⚕️' },
     { id: 'appointment', label: 'Book Appointment', icon: '📅' }
   ];
 
@@ -22,12 +23,12 @@ const Navbar = ({ activeSection, onSectionChange }) => {
             <div className="flex-shrink-0 flex items-center">
               <div className="bg-white rounded-full p-2 mr-3 shadow-md">
                 <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-white">CardioMed</span>
-                <span className="text-xs text-blue-100">Clinic</span>
+                <span className="text-xl font-bold text-white">Dr. Ganesh</span>
+                <span className="text-xs text-blue-100">Chandra Saurav</span>
               </div>
             </div>
           </div>
@@ -41,8 +42,8 @@ const Navbar = ({ activeSection, onSectionChange }) => {
                   onClick={() => handleNavClick(item.id)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     activeSection === item.id
-                      ? 'bg-white text-blue-600'
-                      : 'text-blue-100 hover:bg-blue-700 hover:text-white'
+                      ? "bg-white text-blue-600"
+                      : "text-blue-100 hover:bg-blue-700 hover:text-white"
                   }`}
                 >
                   <span className="mr-1">{item.icon}</span>
@@ -83,8 +84,8 @@ const Navbar = ({ activeSection, onSectionChange }) => {
                 onClick={() => handleNavClick(item.id)}
                 className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   activeSection === item.id
-                    ? 'bg-white text-blue-600'
-                    : 'text-blue-100 hover:bg-blue-600 hover:text-white'
+                    ? "bg-white text-blue-600"
+                    : "text-blue-100 hover:bg-blue-600 hover:text-white"
                 }`}
               >
                 <span className="mr-2">{item.icon}</span>

@@ -13,6 +13,7 @@ import ContentManager from "./components/ContentManager";
 import HomeContentSection from "./components/HomeContentSection";
 import DoctorLogin from "./components/DoctorLogin";
 import SecureDoctorPortal from "./components/SecureDoctorPortal";
+import DoctorProfile from "./components/DoctorProfile";
 import { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
 import { isPortalSubdomain, getMainDomainUrl } from "./utils/subdomain";
 
@@ -210,6 +211,13 @@ function App() {
       {activeSection === 'reviews' && (
         <div className="pt-16">
           <CustomerReviews onBookAppointment={handleBookAppointment} />
+        </div>
+      )}
+      
+      {/* Profile Section */}
+      {activeSection === 'profile' && (
+        <div className="pt-16">
+          <DoctorProfile />
         </div>
       )}
       

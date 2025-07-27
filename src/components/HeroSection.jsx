@@ -38,7 +38,7 @@ const HeroSection = ({ onBookAppointment }) => {
       description:
         "Complete patient profiling including age and gender-specific care, ensuring personalized treatment plans for optimal health outcomes.",
       image:
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        "https://i.ibb.co/DfssMs3x/diagnosis-treatment-heart-disease-cardiology-patients-cardiovascular-checkup-1135642-73.jpg",
       altText: "Personalized Medical Care",
       features: ["Patient Profiling", "Age-Specific Care", "Gender Considerations", "Follow-up Support"],
     },
