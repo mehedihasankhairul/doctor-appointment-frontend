@@ -4,8 +4,6 @@ import ContentManager from "./ContentManager";
 import apiService from '../services/api.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const DoctorPortal = ({ onTogglePortal }) => {
   const [selectedDate, setSelectedDate] = useState(dayjs().format("YYYY-MM-DD"));
@@ -40,6 +38,36 @@ const getAppointmentCountsByDate = () => {
     }
   });
   return counts;
+};
+
+const generateCalendarDays = () => {
+  const currentDate = dayjs(selectedDate);
+  const startOfMonth = currentDate.startOf('month');
+  const endOfMonth = currentDate.endOf('month');
+  const startOfCalendar = startOfMonth.startOf('week');
+  const endOfCalendar = endOfMonth.endOf('week');
+  
+  const days = [];
+  let day = startOfCalendar;
+  
+  while (day.isBefore(endOfCalendar) || day.isSame(endOfCalendar)) {
+    days.push(day);
+    day = day.add(1, 'day');
+  }
+  
+  return days;
+};
+
+const isToday = (date) => {
+  return dayjs().isSame(date, 'day');
+};
+
+const isSelected = (date) => {
+  return dayjs(selectedDate).isSame(date, 'day');
+};
+
+const isCurrentMonth = (date) => {
+  return dayjs(selectedDate).isSame(date, 'month');
 };
 
 const loadAppointments = async () => {
@@ -226,16 +254,93 @@ const loadAppointments = async () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Date
               </label>
-<DatePicker
-  selected={new Date(selectedDate)}
-  onChange={(date) => setSelectedDate(dayjs(date).format('YYYY-MM-DD'))}
-  dayClassName={(date) => {
-    const formattedDate = dayjs(date).format('YYYY-MM-DD');
-    const appointmentCounts = getAppointmentCountsByDate();
-    return appointmentCounts[formattedDate] ? 'bg-blue-100' : undefined;
-  }}
-  inline
-/>
+<div className="w-full">
+              {/* Calendar Navigation */}
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={() => setSelectedDate(dayjs(selectedDate).subtract(1, 'month').format('YYYY-MM-DD'))}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {dayjs(selectedDate).format('MMMM YYYY')}
+                </h3>
+                <button
+                  onClick={() => setSelectedDate(dayjs(selectedDate).add(1, 'month').format('YYYY-MM-DD'))}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Calendar Grid */}
+              <div className="grid grid-cols-7 gap-1">
+                {/* Day headers */}
+                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+                  <div key={day} className="p-2 text-center text-sm font-medium text-gray-500">
+                    {day}
+                  </div>
+                ))}
+                
+                {/* Calendar days */}
+                {generateCalendarDays().map((day, index) => {
+                  const formattedDate = day.format('YYYY-MM-DD');
+                  const appointmentCounts = getAppointmentCountsByDate();
+                  const appointmentCount = appointmentCounts[formattedDate] || 0;
+                  const isTodayDate = isToday(day);
+                  const isSelectedDate = isSelected(day);
+                  const isCurrentMonthDate = isCurrentMonth(day);
+                  
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedDate(formattedDate)}
+                      className={`
+                        relative p-2 text-sm transition-all rounded-lg
+                        ${isSelectedDate 
+                          ? 'bg-blue-500 text-white' 
+                          : isCurrentMonthDate 
+                            ? 'hover:bg-gray-100 text-gray-800' 
+                            : 'text-gray-400 hover:bg-gray-50'
+                        }
+                        ${isTodayDate && !isSelectedDate ? 'ring-2 ring-blue-300' : ''}
+                        ${appointmentCount > 0 && !isSelectedDate ? 'bg-blue-50' : ''}
+                      `}
+                    >
+                      <div className="text-center">
+                        <div className="font-medium">{day.format('D')}</div>
+                        {appointmentCount > 0 && (
+                          <div className={`
+                            mt-1 text-xs font-bold px-1 py-0.5 rounded-full
+                            ${isSelectedDate 
+                              ? 'bg-white text-blue-500' 
+                              : 'bg-blue-500 text-white'
+                            }
+                          `}>
+                            {appointmentCount}
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+              
+              {/* Today button */}
+              <div className="mt-4 flex justify-center">
+                <button
+                  onClick={() => setSelectedDate(dayjs().format('YYYY-MM-DD'))}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
+                >
+                  Go to Today
+                </button>
+              </div>
+            </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
