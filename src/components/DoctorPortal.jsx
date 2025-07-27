@@ -4,6 +4,9 @@ import ContentManager from "./ContentManager";
 import apiService from '../services/api.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 const DoctorPortal = ({ onTogglePortal }) => {
   const [selectedDate, setSelectedDate] = useState(dayjs().format("YYYY-MM-DD"));
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,7 +30,19 @@ const DoctorPortal = ({ onTogglePortal }) => {
     }
   }, [isAuthenticated]);
 
-  const loadAppointments = async () => {
+const getAppointmentCountsByDate = () => {
+  const counts = {};
+  appointments.forEach((appointment) => {
+    if (counts[appointment.date]) {
+      counts[appointment.date] += 1;
+    } else {
+      counts[appointment.date] = 1;
+    }
+  });
+  return counts;
+};
+
+const loadAppointments = async () => {
     setAppointmentsLoading(true);
     console.log('🔄 Loading appointments from API...');
     console.log('🔑 Auth token:', apiService.authToken ? 'Present' : 'Missing');
@@ -211,12 +226,16 @@ const DoctorPortal = ({ onTogglePortal }) => {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Date
               </label>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
+<DatePicker
+  selected={new Date(selectedDate)}
+  onChange={(date) => setSelectedDate(dayjs(date).format('YYYY-MM-DD'))}
+  dayClassName={(date) => {
+    const formattedDate = dayjs(date).format('YYYY-MM-DD');
+    const appointmentCounts = getAppointmentCountsByDate();
+    return appointmentCounts[formattedDate] ? 'bg-blue-100' : undefined;
+  }}
+  inline
+/>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
