@@ -4,6 +4,18 @@ const HeroSection = ({ onBookAppointment }) => {
   const slides = [
     {
       id: 1,
+
+      badge: "বিশেষজ্ঞ ডাক্তারের সেবা",
+      title: "বিশ্বস্ত চিকিৎসা,",
+      titleHighlight: "আমাদের প্রতিশ্রুতি",
+      description:
+        "আপনার স্বাস্থ্য আমাদের কাছে প্রাধান্য পায়। অভিজ্ঞ চিকিৎসকদের কাছ থেকে উচ্চমানের এবং ব্যক্তিগতকৃত চিকিৎসা সেবা নিন।",
+      image: "https://i.ibb.co/1JsGrZt0/image.png",
+      altText: "বিশেষজ্ঞ চিকিৎসক পরামর্শ",
+      features: ["বিশেষজ্ঞ চিকিৎসক", "ব্যক্তিগত সেবা", "উচ্চমানের চিকিৎসা", "দ্রুত অ্যাপয়েন্টমেন্ট"],
+    },
+    {
+      id: 2,
       badge: "Heart Care You Can Rely On",
       title: "Your Heart,",
       titleHighlight: "Our Commitment",
@@ -17,17 +29,6 @@ const HeroSection = ({ onBookAppointment }) => {
         "Tailored Patient Care",
         "Convenient Same-Day Appointments",
       ],
-    },
-    {
-      id: 2,
-      badge: "বিশেষজ্ঞ ডাক্তারের সেবা",
-      title: "বিশ্বস্ত চিকিৎসা,",
-      titleHighlight: "আমাদের প্রতিশ্রুতি",
-      description:
-        "আপনার স্বাস্থ্য আমাদের কাছে প্রাধান্য পায়। অভিজ্ঞ চিকিৎসকদের কাছ থেকে উচ্চমানের এবং ব্যক্তিগতকৃত চিকিৎসা সেবা নিন।",
-      image: "https://i.ibb.co/1JsGrZt0/image.png",
-      altText: "বিশেষজ্ঞ চিকিৎসক পরামর্শ",
-      features: ["বিশেষজ্ঞ চিকিৎসক", "ব্যক্তিগত সেবা", "উচ্চমানের চিকিৎসা", "দ্রুত অ্যাপয়েন্টমেন্ট"],
     },
     {
       id: 3,
