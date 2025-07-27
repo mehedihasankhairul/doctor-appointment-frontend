@@ -9,7 +9,7 @@ const HeroSection = ({ onBookAppointment }) => {
       titleHighlight: "Our Commitment",
       description:
         "Trust our team of expert cardiologists to provide personalized care with the latest in diagnostic and treatment technologies, all focused on your heart health.",
-      image: "https://i.ibb.co/S4YZtZGt/Modern-Profile-Photo-Instagram-Post.png",
+      image: "https://i.ibb.co/QvVD34Xy/Modern-Profile-Photo-Instagram-Post-1.png",
       altText: "Professional Medical Examination",
       features: [
         "Precise Diagnosis",
@@ -25,8 +25,7 @@ const HeroSection = ({ onBookAppointment }) => {
       titleHighlight: "আমাদের প্রতিশ্রুতি",
       description:
         "আপনার স্বাস্থ্য আমাদের কাছে প্রাধান্য পায়। অভিজ্ঞ চিকিৎসকদের কাছ থেকে উচ্চমানের এবং ব্যক্তিগতকৃত চিকিৎসা সেবা নিন।",
-      image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "https://i.ibb.co/1JsGrZt0/image.png",
       altText: "বিশেষজ্ঞ চিকিৎসক পরামর্শ",
       features: ["বিশেষজ্ঞ চিকিৎসক", "ব্যক্তিগত সেবা", "উচ্চমানের চিকিৎসা", "দ্রুত অ্যাপয়েন্টমেন্ট"],
     },
