@@ -294,19 +294,28 @@ const loadAppointments = async () => {
               </label>
               <div className="space-y-2">
                 
-                {/* Calendar toggle button */}
-                <button
-                  onClick={() => setShowCalendar(!showCalendar)}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  {showCalendar ? 'Hide Calendar' : 'Show Calendar'}
-                  <svg className={`w-4 h-4 transition-transform ${showCalendar ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
+                {/* Selected date display and calendar toggle */}
+                <div className="w-full">
+                  <div className="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm font-medium text-blue-800">
+                        {formatDate(selectedDate)}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => setShowCalendar(!showCalendar)}
+                      className="flex items-center gap-1 px-2 py-1 text-blue-600 hover:bg-blue-100 rounded transition-colors text-sm"
+                    >
+                      {showCalendar ? 'Hide' : 'Change'}
+                      <svg className={`w-3 h-3 transition-transform ${showCalendar ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
               
               {/* Calendar component - only show when expanded */}
@@ -356,7 +365,10 @@ const loadAppointments = async () => {
                   return (
                     <button
                       key={index}
-                      onClick={() => setSelectedDate(formattedDate)}
+                      onClick={() => {
+                        setSelectedDate(formattedDate);
+                        setShowCalendar(false); // Auto-collapse calendar on date selection
+                      }}
                       className={`
                         relative p-2 text-sm transition-all rounded-lg
                         ${isSelectedDate 
@@ -391,7 +403,10 @@ const loadAppointments = async () => {
               {/* Today button */}
               <div className="mt-4 flex justify-center">
                 <button
-                  onClick={() => setSelectedDate(dayjs().format('YYYY-MM-DD'))}
+                  onClick={() => {
+                    setSelectedDate(dayjs().format('YYYY-MM-DD'));
+                    setShowCalendar(false); // Auto-collapse calendar when going to today
+                  }}
                   className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
                 >
                   Go to Today
