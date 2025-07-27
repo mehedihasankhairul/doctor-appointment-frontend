@@ -19,6 +19,13 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
         return;
       }
 
+      // Check for Friday (day 5) - No slots should be available
+      const dayOfWeek = dayjs(selectedDate).day();
+      if (dayOfWeek === 5) {
+        setSlots([]);
+        return;
+      }
+
       setLoading(true);
       try {
         // Try to fetch real slots from API first
