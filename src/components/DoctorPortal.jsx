@@ -15,6 +15,7 @@ const DoctorPortal = ({ onTogglePortal }) => {
   const [notes, setNotes] = useState("");
   const [activeTab, setActiveTab] = useState("appointments");
   const [showAppointmentsList, setShowAppointmentsList] = useState(true); // Show appointments by default
+  const [showCalendar, setShowCalendar] = useState(false); // Calendar collapsed by default
 
   const { isAuthenticated, loginAsDoctor } = useAuth();
   const [appointments, setAppointments] = useState([]);
@@ -254,7 +255,33 @@ const loadAppointments = async () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Date
               </label>
-<div className="w-full">
+              <div className="space-y-2">
+                {/* Date input for quick selection */}
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                
+                {/* Calendar toggle button */}
+                <button
+                  onClick={() => setShowCalendar(!showCalendar)}
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {showCalendar ? 'Hide Calendar' : 'Show Calendar'}
+                  <svg className={`w-4 h-4 transition-transform ${showCalendar ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Calendar component - only show when expanded */}
+              {showCalendar && (
+<div className="w-full mt-4 border border-gray-200 rounded-lg p-4 bg-gray-50">
               {/* Calendar Navigation */}
               <div className="flex items-center justify-between mb-4">
                 <button
@@ -316,10 +343,10 @@ const loadAppointments = async () => {
                         <div className="font-medium">{day.format('D')}</div>
                         {appointmentCount > 0 && (
                           <div className={`
-                            mt-1 text-xs font-bold px-1 py-0.5 rounded-full
+                            mt-1 text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] flex items-center justify-center
                             ${isSelectedDate 
-                              ? 'bg-white text-blue-500' 
-                              : 'bg-blue-500 text-white'
+                              ? 'bg-white text-blue-500 shadow-sm' 
+                              : 'bg-red-500 text-white shadow-md'
                             }
                           `}>
                             {appointmentCount}
@@ -340,6 +367,8 @@ const loadAppointments = async () => {
                   Go to Today
                 </button>
               </div>
+            </div>
+              )}
             </div>
             </div>
             <div>
