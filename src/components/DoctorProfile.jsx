@@ -190,7 +190,7 @@ results in coughing, short breath,`,
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-20 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-28 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white rounded-full"></div>
@@ -205,9 +205,9 @@ results in coughing, short breath,`,
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur opacity-75"></div>
                 <img
-                  src="https://i.ibb.co/S4YZtZGt/Modern-Profile-Photo-Instagram-Post.png"
+                  src="https://i.ibb.co/pVCxFys/Blue-Professional-Doctor-and-Hospital-Twitter-Profile-Picture.png"
                   alt={doctorInfo.name}
-                  className="relative w-60 h-60 object-cover rounded-full border-6 border-white shadow-2xl"
+                  className="relative w-80 h-80 object-cover  rounded-full border-6 border-white shadow-2xl"
                 />
                 {/* Status Badge */}
                 <div className="absolute -bottom-2 -right-2 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
@@ -221,7 +221,7 @@ results in coughing, short breath,`,
               {/* Name with special styling */}
               <div className="mb-6">
                 <div className="flex flex-col lg:flex-row lg:items-end lg:space-x-4 mb-4">
-                  <h1 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent leading-tight">
+                  <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent leading-tight">
                     Dr. Ganesh Chandra Saurav
                   </h1>
                 </div>
@@ -500,11 +500,17 @@ results in coughing, short breath,`,
               <div className="space-y-4">
                 <div>
                   <p className="font-semibold text-blue-700 mb-1">Ibn Sina Hospital</p>
-                  <p className="text-gray-700 text-sm">23 Kha, Dhanmondi R/A Road No 2<br />Dhaka 1205, Bangladesh</p>
+                  <p className="text-gray-700 text-sm">
+                    23 Kha, Dhanmondi R/A Road No 2<br />
+                    Dhaka 1205, Bangladesh
+                  </p>
                 </div>
                 <div>
                   <p className="font-semibold text-blue-700 mb-1">United Hospital</p>
-                  <p className="text-gray-700 text-sm">Plot 15, Road 71, Gulshan 2<br />Dhaka 1212, Bangladesh</p>
+                  <p className="text-gray-700 text-sm">
+                    Plot 15, Road 71, Gulshan 2<br />
+                    Dhaka 1212, Bangladesh
+                  </p>
                 </div>
               </div>
             </div>
@@ -551,10 +557,16 @@ results in coughing, short breath,`,
                 <div>
                   <p className="font-semibold text-purple-700">Email Addresses</p>
                   <div className="space-y-1">
-                    <a href="mailto:dr.ganeshcs@gmail.com" className="block text-gray-700 hover:text-purple-600 transition-colors text-sm">
+                    <a
+                      href="mailto:dr.ganeshcs@gmail.com"
+                      className="block text-gray-700 hover:text-purple-600 transition-colors text-sm"
+                    >
                       dr.ganeshcs@gmail.com
                     </a>
-                    <a href="mailto:appointments@drganeshcs.com" className="block text-gray-700 hover:text-purple-600 transition-colors text-sm">
+                    <a
+                      href="mailto:appointments@drganeshcs.com"
+                      className="block text-gray-700 hover:text-purple-600 transition-colors text-sm"
+                    >
                       appointments@drganeshcs.com
                     </a>
                   </div>
@@ -562,8 +574,12 @@ results in coughing, short breath,`,
                 <div>
                   <p className="font-semibold text-purple-700">Consultation Hours</p>
                   <div className="text-gray-700 text-sm">
-                    <p><strong>Sat - Thu:</strong> 10:00 AM - 6:00 PM</p>
-                    <p><strong>Friday:</strong> Closed</p>
+                    <p>
+                      <strong>Sat - Thu:</strong> 10:00 AM - 6:00 PM
+                    </p>
+                    <p>
+                      <strong>Friday:</strong> Closed
+                    </p>
                     <p className="text-purple-600 mt-1 text-xs">* Available at both hospitals</p>
                   </div>
                 </div>

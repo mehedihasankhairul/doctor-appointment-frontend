@@ -216,7 +216,7 @@ function App() {
       
       {/* Profile Section */}
       {activeSection === 'profile' && (
-        <div className="pt-16">
+        <div className="pt-0">
           <DoctorProfile />
         </div>
       )}
