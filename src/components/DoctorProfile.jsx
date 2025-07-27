@@ -42,21 +42,21 @@ const DoctorProfile = () => {
   const certificationImages = [
     {
       id: 1,
-      src: "../../public/images/certification/certificate.jpg",
+      src: "/images/certification/Certificate.jpg",
       alt: "Cardiology certification",
       caption: "Degree Certificate in Cardiology",
       type: "certificate",
     },
     {
       id: 2,
-      src: "../../public/images/certification/card.png",
+      src: "/images/certification/card.png",
       alt: "cardiology certification",
       caption: "Fellowship in Cardiology",
       type: "certificate",
     },
     {
       id: 3,
-      src: "../../public/images/certification/journal.jpeg",
+      src: "/images/certification/journal.jpeg",
       alt: "Research Publication",
       caption: "Published Research in Cardiology",
       type: "Publication",
