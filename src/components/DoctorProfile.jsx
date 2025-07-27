@@ -66,46 +66,75 @@ const DoctorProfile = () => {
   const galleryImages = [
     {
       id: 1,
-      src: "../../public/images/hangouts/hangout1.jpeg",
+      src: "/images/hangouts/hangout1.jpeg",
       alt: "hangout1",
       caption: "Patient consultation",
     },
     {
       id: 2,
-      src: "../../public/images/hangouts/hangout2.jpeg",
+      src: "/images/hangouts/hangout2.jpeg",
       alt: "Modern surgery equipment",
       caption: "State-of-the-art equipment",
     },
     {
       id: 3,
-      src: "../../public/images/hangouts/hangout3.jpeg",
+      src: "/images/hangouts/hangout3.jpeg",
       alt: "Eye surgery in progress",
       caption: "Advanced eye surgery",
     },
-    { id: 4, src: "../../public/images/hangouts/hangout4.jpeg", alt: "Dr. Ganesh with team", caption: "Medical team" },
+    {
+      id: 4,
+      src: "/images/hangouts/hangout4.jpeg",
+      alt: "Dr. Ganesh with team",
+      caption: "Medical team",
+    },
     {
       id: 5,
-      src: "../../public/images/hangouts/hangout5.jpeg",
+      src: "/images/hangouts/hangout5.jpeg",
       alt: "Award ceremony",
       caption: "Excellence award ceremony",
     },
     {
       id: 6,
-      src: "../../public/images/hangouts/hangout6.jpeg",
+      src: "/images/hangouts/hangout6.jpeg",
       alt: "Medical conference",
       caption: "International conference",
     },
     {
       id: 7,
-      src: "../../public/images/hangouts/hangout7.jpeg",
+      src: "/images/hangouts/hangout7.jpeg",
       alt: "Community health camp",
       caption: "Community health initiative",
     },
     {
       id: 8,
-      src: "../../public/images/hangouts/hangout8.jpeg",
+      src: "/images/hangouts/hangout8.jpeg",
       alt: "Patient recovery",
       caption: "Successful patient recovery",
+    },
+    {
+      id: 9,
+      src: "/images/hangouts/hangout9.jpeg",
+      alt: "Medical conference presentation",
+      caption: "Conference presentation",
+    },
+    {
+      id: 10,
+      src: "/images/hangouts/hangout10.jpeg",
+      alt: "Team meeting",
+      caption: "Medical team meeting",
+    },
+    {
+      id: 11,
+      src: "/images/hangouts/hangout11.jpeg",
+      alt: "Research work",
+      caption: "Research and development",
+    },
+    {
+      id: 12,
+      src: "/images/hangouts/hangout12.jpeg",
+      alt: "Patient care",
+      caption: "Compassionate patient care",
     },
   ];
 
