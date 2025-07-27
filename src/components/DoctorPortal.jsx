@@ -293,13 +293,6 @@ const loadAppointments = async () => {
                 Select Date
               </label>
               <div className="space-y-2">
-                {/* Date input for quick selection */}
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
                 
                 {/* Calendar toggle button */}
                 <button
