@@ -6,9 +6,9 @@ const DoctorProfile = () => {
   // Sample data - in a real app, this would come from an API or props
   const doctorInfo = {
     name: "Dr. Ganesh Chandra Saurav",
-    title: "Cardiologist & General Physician",
-    specialization: "MBBS, D-Card, FCCP, FCPS (Medicine) ",
-    experience: "15+ years",
+    title: "Cardiologist & Internal Medicine Specialist",
+    specialization: "MBBS, D-Card, FCCP, FCPS (Medicine), MACP, MESC, MACC",
+    experience: "20+ years",
     education: [
       "MBBS - Faridpur Medical College, Faridpur",
       "D-Card - National Institute of Cardiovascular Diseases (NICVD), Dhaka",
@@ -18,24 +18,28 @@ const DoctorProfile = () => {
       "MESC - Member, European Society of Cardiology",
       "CCD - Certificate Course on Diabetology, BIRDEM Hospital, Dhaka",
     ],
-    about:
-      "Dr. Ganesh Chandra Saurav is a highly experienced ophthalmologist with over 15 years of expertise in comprehensive eye care. He specializes in advanced retinal surgeries, cataract procedures, and modern eye treatments. Known for his compassionate approach and cutting-edge techniques, Dr. Ganesh has successfully treated thousands of patients and is dedicated to preserving and restoring vision.",
+    about: `Dr. Ganesh Chandra Saurav is a renowned and highly experienced Medicine Specialist with a distinguished focus on Cardiovascular Medicine. He holds an impressive array of qualifications, including MBBS, D.Card, FCPS, MACP, MESC, MACC, and FACC. Currently serving as an Associate Professor of Medicine and Chief Consultant of Cardiology in the Department of Medicine & Division of Cardiology at a leading private Medical College & Hospital, Dr. Saurav brings decades of expertise to his patients.
+
+        With extensive clinical experience, Dr. Saurav specializes in the diagnosis and treatment of a wide spectrum of complex medical conditions. His areas of expertise include hypertension, heart disease, chest disorders, diabetes mellitus, thyroid disorders, arthritis, skin and bone disorders, gastrointestinal diseases, kidney disorders, and various chronic and lifestyle-related illnesses.
+
+        Dr. Saurav has participated in numerous national and international medical conferences, including prestigious forums such as "Medical Science Europe," where he has shared his insights on various disciplines within internal medicine and cardiology. His contributions have earned him respect in the medical community both at home and abroad.`,
+
     achievements: [
-      "Pioneered minimally invasive cataract surgery techniques in Bangladesh",
-      "Published over 20 research papers in international medical journals",
-      "Recipient of the 'Best Ophthalmologist' award at the National Medical Conference 2023",
-      "Led a team in a groundbreaking study on diabetic retinopathy",
-      "Trained over 100 junior doctors in advanced eye care techniques",
+      "Recognized for pioneering integrated treatment of cardiovascular disease with Diabetes, Hormone, Kidney, Liver, and Neurological Complications.",
+      "Earned fellowships from globally respected institutions including FACC, MACP, MACC, and MESC.",
+      "Serves as Associate Professor and Chief Consultant, mentoring future physicians in cardiology and internal medicine.",
+      "Renowned for advanced diagnostic precision in chest disease, pain medicine, and metabolic disorders.",
+      "Invited speaker at national and international medical conferences, including Medical Science Europe.",
     ],
+
     services: [
-      "ECG (Electrocardiogram)",
-      "Cardiac Risk Assessment",
-      "Hypertension Management",
-      "Coronary Artery Disease Treatment",
-      "Heart Failure Management",
-      "General Health Check-ups",
-      "Diabetes Management",
-      "Thyroid Disorder Treatment",
+      "Chest Medicine Treatment",
+      "Pain Management",
+      "Stroke Management",
+      "Rhythm Management",
+      "Lipid Disorder Management",
+      "Vascular Management",
+      "Liver Treatment",
     ],
   };
 
@@ -231,8 +235,7 @@ results in coughing, short breath,`,
               {/* Professional Info */}
               <div className="space-y-2 mb-6">
                 <p className="text-xl lg:text-2xl text-blue-100 font-medium">{doctorInfo.title}</p>
-                <p className="text-lg lg:text-md text-blue-200 font-light">{doctorInfo.specialization}</p>
-                <p className="text-base lg:text-lg text-blue-300">Leading Medical Specialist</p>
+                <p className="text-lg lg:text-sm text-blue-200 font-light">{doctorInfo.specialization}</p>
               </div>
 
               {/* Experience Badges */}
@@ -247,7 +250,7 @@ results in coughing, short breath,`,
                 </span>
                 <span className="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full border border-white border-opacity-30 hover:bg-opacity-30 transition-all duration-300">
                   <span className="mr-2">⭐</span>
-                  Expert Surgeon
+                  Expert Cardiologist
                 </span>
               </div>
             </div>
@@ -262,19 +265,21 @@ results in coughing, short breath,`,
             <span className="mr-3 text-4xl">👨‍⚕️</span>
             About Dr. Ganesh Chandra Saurav
           </h2>
-          <p className="text-md lg:text-lg text-gray-700 leading-relaxed mb-6 font-light">{doctorInfo.about}</p>
+          <p className="text-md lg:text-lg text-gray-700 text-pretty text-justify leading-relaxed mb-6 font-light">
+            {doctorInfo.about}
+          </p>
 
           {/* Education */}
           <div className="mb-8">
-            <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-6 flex items-center">
+            <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-6 flex items-center">
               <span className="mr-3 text-2xl">🎓</span>
               Education & Qualifications
             </h3>
             <ul className="space-y-4">
               {doctorInfo.education.map((edu, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="text-blue-600 mr-3 mt-2 text-xl">•</span>
-                  <span className="text-lg lg:text-xl text-gray-700 leading-relaxed">{edu}</span>
+                  <span className="text-blue-600 mr-3 text-xl">•</span>
+                  <span className="text-md lg:text-lg text-gray-700 leading-relaxed">{edu}</span>
                 </li>
               ))}
             </ul>
@@ -282,15 +287,15 @@ results in coughing, short breath,`,
 
           {/* Achievements */}
           <div>
-            <h3 className="text-2xl lg:text-3xl font-semibold text-gray-900 mb-6 flex items-center">
-              <span className="mr-3 text-3xl">🏆</span>
+            <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+              <span className="mr-3 text-2xl">🏆</span>
               Key Achievements
             </h3>
             <ul className="space-y-4">
               {doctorInfo.achievements.map((achievement, index) => (
                 <li key={index} className="flex items-start">
                   <span className="text-green-600 mr-3 mt-2 text-xl">✓</span>
-                  <span className="text-lg lg:text-xl text-gray-700 leading-relaxed">{achievement}</span>
+                  <span className="text-md lg:text-lg text-gray-700 leading-relaxed">{achievement}</span>
                 </li>
               ))}
             </ul>
@@ -299,8 +304,8 @@ results in coughing, short breath,`,
 
         {/* Services Section */}
         <div className="bg-white rounded-lg shadow-lg p-10 mb-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
-            <span className="mr-3 text-4xl">🏥</span>
+          <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-3 text-2xl">🏥</span>
             Services & Specializations
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -310,8 +315,8 @@ results in coughing, short breath,`,
                 className="bg-blue-50 rounded-lg p-4 border border-blue-200 hover:bg-blue-100 transition-colors duration-300"
               >
                 <div className="flex items-center">
-                  <span className="text-blue-600 mr-2 text-xl"></span>
-                  <span className="font-medium text-gray-900 text-md lg:text-lg">{service}</span>
+                  {/* <span className="text-blue-600 mr-2 text-xl"></span> */}
+                  <span className="font-medium text-gray-600 text-md lg:text-lg">{service}</span>
                 </div>
               </div>
             ))}
@@ -320,11 +325,11 @@ results in coughing, short breath,`,
 
         {/* Certifications & Achievements Section */}
         <div className="bg-white rounded-lg shadow-lg p-10 mb-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
-            <span className="mr-3 text-4xl">🏅</span>
+          <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-3 text-2xl">🏅</span>
             Certifications & Achievements
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-md text-gray-600 mb-8">
             Professional certificates, awards, and patient testimonials showcasing Dr. Ganesh's expertise and
             dedication.
           </p>
@@ -418,8 +423,8 @@ results in coughing, short breath,`,
 
         {/* Photo Gallery */}
         <div className="bg-white rounded-lg shadow-lg p-10 mb-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
-            <span className="mr-3 text-4xl">📸</span>
+          <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-3 text-2xl">📸</span>
             Photo Gallery
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -448,8 +453,8 @@ results in coughing, short breath,`,
 
         {/* Blog & Content */}
         <div className="bg-white rounded-lg shadow-lg p-10 mb-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
-            <span className="mr-3 text-4xl">📝</span>
+          <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-3 text-2xl">📝</span>
             Latest Articles & Insights
           </h2>
           <div className="space-y-8">
@@ -480,8 +485,8 @@ results in coughing, short breath,`,
 
         {/* Contact Information */}
         <div className="bg-white rounded-lg shadow-lg p-10">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 flex items-center">
-            <span className="mr-3 text-4xl">📞</span>
+          <h2 className="text-2xl lg:text-3xl  font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-3 text-2xl">📞</span>
             Contact Dr. Ganesh Chandra Saurav
           </h2>
           <p className="text-lg text-gray-600 mb-8">
@@ -499,17 +504,19 @@ results in coughing, short breath,`,
               </div>
               <div className="space-y-4">
                 <div>
-                  <p className="font-semibold text-blue-700 mb-1">Ibn Sina Hospital</p>
+                  <p className="font-semibold text-blue-700 mb-1">Popular Diagnostic Centre Ltd. </p>
                   <p className="text-gray-700 text-sm">
-                    23 Kha, Dhanmondi R/A Road No 2<br />
-                    Dhaka 1205, Bangladesh
+                    House # 57, Laksam Road, Ramghat, Kandirpar, Cumilla, Bangladesh. <br />
+                    <a href="https://populardiagnostic.com" target="_blank" rel="noopener noreferrer">
+                      www.populardiagnostic.com
+                    </a>
                   </p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-700 mb-1">United Hospital</p>
+                  <p className="font-semibold text-blue-700 mb-1">Moon Hospital</p>
                   <p className="text-gray-700 text-sm">
-                    Plot 15, Road 71, Gulshan 2<br />
-                    Dhaka 1212, Bangladesh
+                    Room No #617, Shahid Khawaja Nizamuddin Road, Jhautola, Comilla, Bangladesh <br />
+                    Mobile: +88 01836-649409
                   </p>
                 </div>
               </div>
@@ -524,22 +531,17 @@ results in coughing, short breath,`,
                 <h3 className="text-xl font-bold text-gray-900 ml-4">Phone Numbers</h3>
               </div>
               <div className="space-y-3">
-                <div>
-                  <p className="font-semibold text-green-700">Main Line</p>
-                  <a href="tel:+8801711123456" className="text-gray-700 hover:text-green-600 transition-colors">
-                    +880 1711-123456
-                  </a>
-                </div>
+                <div></div>
                 <div>
                   <p className="font-semibold text-green-700">Emergency</p>
                   <a href="tel:+8801711987654" className="text-gray-700 hover:text-green-600 transition-colors">
-                    +880 1711-987654
+                    +88 01864-569091
                   </a>
                 </div>
                 <div>
                   <p className="font-semibold text-green-700">Clinic</p>
                   <a href="tel:+88029612345" className="text-gray-700 hover:text-green-600 transition-colors">
-                    +880 2-9612345
+                    +88 01836-649409
                   </a>
                 </div>
               </div>
@@ -561,13 +563,13 @@ results in coughing, short breath,`,
                       href="mailto:dr.ganeshcs@gmail.com"
                       className="block text-gray-700 hover:text-purple-600 transition-colors text-sm"
                     >
-                      dr.ganeshcs@gmail.com
+                      drganeshcs@gmail.com
                     </a>
                     <a
                       href="mailto:appointments@drganeshcs.com"
                       className="block text-gray-700 hover:text-purple-600 transition-colors text-sm"
                     >
-                      appointments@drganeshcs.com
+                      https://www.drganeshcs.com/
                     </a>
                   </div>
                 </div>
@@ -600,8 +602,8 @@ results in coughing, short breath,`,
                 <p className="text-red-700">
                   For urgent cardiovascular or medical emergencies, please call our emergency line at{" "}
                   <a href="tel:+8801711987654" className="font-bold underline hover:text-red-800 transition-colors">
-                    +880 1711-987654
-                  </a>{" "}
+                    +880 1864-569091
+                  </a>
                   or visit the nearest emergency room immediately.
                 </p>
               </div>

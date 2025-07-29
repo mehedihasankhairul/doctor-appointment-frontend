@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
@@ -47,105 +47,127 @@ const CustomerReviews = ({ onBookAppointment }) => {
   const reviews = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      location: "New York, NY",
+      name: "সারাহা জাহান",
+      location: "কুমিল্লা, বাংলাদেশ",
       rating: 5,
-      comment: "Dr. Smith is amazing! My vision has improved significantly after the treatment. The staff is very professional and caring.",
-      date: "2 weeks ago",
-      avatar: "👩‍💼",
-      bgColor: "from-pink-400 to-rose-500"
-    },
-    {
-      id: 7,
-      name: "মাহিনুর রহমান",
-      location: "ঢাকা, বাংলাদেশ",
-      rating: 5,
-      comment: "চমৎকার সেবা এবং তাদের আন্তরিকতা অবিশ্বাস্য। আমার চিকিৎসার প্রসংগে অনেক ভালো মত ব্যাখ্যা করেছেন।",
-      date: "১ সপ্তাহ আগে",
-      avatar: "👨‍⚕️",
-      bgColor: "from-blue-400 to-cyan-500"
-    },
-    {
-      id: 8,
-      name: "তানিয়া আক্তার",
-      location: "চট্টগ্রাম, বাংলাদেশ",
-      rating: 4,
-      comment: "সুন্দর পরিবেশ এবং ভর্তি প্রক্রিয়াটি বেশ সহজ ছিল। আমি অত্যন্ত সন্তুষ্ট।",
-      date: "২ মাস আগে",
+      comment:
+        "ডাক্তার স্যার অসাধারণ! আমার হৃদরোগের চিকিৎসার পর অনেক উন্নতি হয়েছে। স্টাফরা খুবই পেশাদার এবং যত্নশীল ছিল। আমি এই ক্লিনিকটি অত্যন্ত সুপারিশ করছি!",
+      date: "২ সপ্তাহ আগে",
       avatar: "👩‍⚕️",
-      bgColor: "from-purple-400 to-pink-500"
+      bgColor: "from-pink-400 to-rose-500",
     },
     {
       id: 2,
-      name: "Michael Chen",
-      location: "Los Angeles, CA",
+      name: "Khaled Mahmud",
+      location: "Comilla, Bangladesh",
       rating: 5,
-      comment: "Outstanding service! The clinic is equipped with the latest technology and the doctor explained everything clearly.",
-      date: "1 month ago",
-      avatar: "👨‍💻",
-      bgColor: "from-green-400 to-emerald-500"
+      comment:
+        "Outstanding service! The doctor explained everything in detail, and the clinic is equipped with the latest technology. I’m completely satisfied with my treatment.",
+      date: "1 week ago",
+      avatar: "👨‍⚕️",
+      bgColor: "from-blue-400 to-cyan-500",
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
-      location: "Chicago, IL",
-      rating: 4,
-      comment: "Great experience overall. The appointment was on time and the staff was friendly. Would definitely recommend!",
-      date: "3 weeks ago",
-      avatar: "👩‍🎓",
-      bgColor: "from-yellow-400 to-orange-500"
+      name: "মাহিনুর রহমান",
+      location: "কুমিল্লা, বাংলাদেশ",
+      rating: 5,
+      comment:
+        "চমৎকার সেবা এবং আন্তরিকতা। ডাক্তার স্যার আমার হৃদরোগের সমস্যা খুব ভালোভাবে ব্যাখ্যা করেছেন এবং চিকিৎসা অত্যন্ত কার্যকর। আমি সম্পূর্ণরূপে সন্তুষ্ট।",
+      date: "১ সপ্তাহ আগে",
+      avatar: "👨‍⚕️",
+      bgColor: "from-blue-400 to-cyan-500",
     },
     {
       id: 4,
-      name: "David Thompson",
-      location: "Houston, TX",
-      rating: 5,
-      comment: "Been coming here for years. Consistently excellent care and attention to detail. Thank you for keeping my heart healthy!",
-      date: "1 week ago",
-      avatar: "👨‍🏫",
-      bgColor: "from-indigo-400 to-blue-500"
+      name: "তানিয়া আক্তার",
+      location: "কুমিল্লা, বাংলাদেশ",
+      rating: 4,
+      comment:
+        "ক্লিনিকের পরিবেশ অনেক সুন্দর এবং চিকিৎসা প্রক্রিয়া ছিল সহজ। স্টাফরা খুবই ভদ্র এবং সহায়তাপর ছিল, পুরো অভিজ্ঞতা ছিল খুব আরামদায়ক।",
+      date: "২ মাস আগে",
+      avatar: "👩‍⚕️",
+      bgColor: "from-purple-400 to-pink-500",
     },
     {
       id: 5,
-      name: "Lisa Wang",
-      location: "Seattle, WA",
+      name: "সাব্বির হোসেন",
+      location: "কুমিল্লা, বাংলাদেশ",
       rating: 5,
-      comment: "The best cardiology and medicine clinic in the city! Professional, thorough, and genuinely care about patient wellbeing.",
-      date: "2 months ago",
-      avatar: "👩‍⚕️",
-      bgColor: "from-teal-400 to-cyan-500"
+      comment:
+        "এখানে সেবা পেয়ে আমি খুবই খুশি। ডাক্তার স্যার হৃদরোগের চিকিৎসা খুব সুন্দরভাবে ব্যাখ্যা করেছেন। যন্ত্রপাতি অত্যন্ত উন্নত এবং কার্যকর।",
+      date: "১ মাস আগে",
+      avatar: "👨‍💻",
+      bgColor: "from-green-400 to-emerald-500",
     },
     {
       id: 6,
-      name: "James Miller",
-      location: "Miami, FL",
+      name: "রুকাইয়া সুলতানা",
+      location: "কুমিল্লা, বাংলাদেশ",
       rating: 4,
-      comment: "Very satisfied with my visit. Clean facility, modern equipment, and knowledgeable staff. Highly recommended!",
-      date: "1 month ago",
-      avatar: "👨‍🔬",
-      bgColor: "from-violet-400 to-purple-500"
+      comment:
+        "একটি ভালো অভিজ্ঞতা overall। অ্যাপয়েন্টমেন্ট ছিল সঠিক সময়, এবং স্টাফরা খুবই বন্ধুত্বপূর্ণ। আধুনিক যন্ত্রপাতি ব্যবহার এবং ডাক্তার সব কিছু সুন্দরভাবে ব্যাখ্যা করেছেন।",
+      date: "৩ সপ্তাহ আগে",
+      avatar: "👩‍⚕️",
+      bgColor: "from-teal-400 to-cyan-500",
+    },
+    {
+      id: 7,
+      name: "Md. Abdullah",
+      location: "Comilla, Bangladesh",
+      rating: 5,
+      comment:
+        "Dr. Ganesh Chandra is amazing, The behavior of doctor's marvelous! My heart condition has improved significantly after the treatment. The staff was very professional and caring. I highly recommend this clinic!",
+      date: "2 weeks ago",
+      avatar: "👩‍⚕️",
+      bgColor: "from-pink-400 to-rose-500",
+    },
+    {
+      id: 8,
+      name: "জহিরুল ইসলাম",
+      location: "কুমিল্লা, বাংলাদেশ",
+      rating: 5,
+      comment:
+        "বহু বছর ধরে এখানে আসছি এবং প্রতিবারই অসাধারণ সেবা পাই। ডাক্তার স্যারের যত্নে আমি অনেক ভালো আছি। আমি তাদের সেবার জন্য কৃতজ্ঞ।",
+      date: "২ সপ্তাহ আগে",
+      avatar: "👨‍🏫",
+      bgColor: "from-indigo-400 to-blue-500",
     },
     {
       id: 9,
-      name: "আবদুল করিম",
-      location: "সিলেট, বাংলাদেশ",
-      rating: 5,
-      comment: "ডাক্তার সাহেবের ব্যবহার অসাধারণ। হৃদযন্ত্রের সমস্যার জন্য এসেছিলাম, এখন অনেক ভালো আছি।",
-      date: "৩ সপ্তাহ আগে",
-      avatar: "👨‍🦳",
-      bgColor: "from-red-400 to-pink-500"
+      name: "Faruk Ahmmed",
+      location: "Comilla, Bangladesh",
+      rating: 4,
+      comment:
+        "Great experience overall. The appointment was on time, and the staff was friendly and attentive. The clinic’s environment was also very welcoming. Would definitely recommend it!",
+      date: "1 month ago",
+      avatar: "👩‍⚕️",
+      bgColor: "from-purple-400 to-pink-500",
     },
     {
       id: 10,
+      name: "মোঃ আব্দুল করিম",
+      location: "কুমিল্লা, বাংলাদেশ",
+      rating: 5,
+      comment:
+        "ডাক্তার স্যারের ব্যবহার খুবই বন্ধুত্বপূর্ণ এবং সেবা চমৎকার। আমার হৃদরোগের চিকিৎসা অনেক উন্নতি করেছে। আমি এই ক্লিনিকটি অন্যদেরও সুপারিশ করব!",
+      date: "৩ সপ্তাহ আগে",
+      avatar: "👨‍🦳",
+      bgColor: "from-red-400 to-pink-500",
+    },
+    {
+      id: 11,
       name: "রিনা খাতুন",
-      location: "রাজশাহী, বাংলাদেশ",
+      location: "কুমিল্লা, বাংলাদেশ",
       rating: 4,
-      comment: "পরিচ্ছন্ন পরিবেশ এবং আধুনিক যন্ত্রপাতি। সময়মতো সেবা পেয়েছি।",
+      comment: "ক্লিনিকের পরিবেশ খুব পরিষ্কার এবং চিকিৎসা কার্যক্রম ছিল সহজ। আমি সেবা এবং যত্নে খুবই সন্তুষ্ট।",
       date: "১ মাস আগে",
       avatar: "👩‍🦱",
-      bgColor: "from-emerald-400 to-teal-500"
-    }
+      bgColor: "from-emerald-400 to-teal-500",
+    },
   ];
+
+
 
 
   const renderStars = (count) => {

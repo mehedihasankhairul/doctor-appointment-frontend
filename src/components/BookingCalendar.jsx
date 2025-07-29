@@ -179,13 +179,18 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
             </div>
           </div>
         )}
-        
+
         {/* Message when no hospital is selected */}
         {!selectedHospital && (
           <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-xl p-6">
             <div className="flex items-center">
               <svg className="w-8 h-8 text-yellow-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                />
               </svg>
               <div>
                 <h3 className="text-lg font-semibold text-yellow-800">Please Select a Hospital First</h3>
@@ -196,7 +201,6 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
         )}
         {/* Mobile: Vertical Stack, Desktop: Horizontal Layout */}
         <div className="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-8">
-          
           {/* Date Picker Section */}
           <div className="lg:col-span-5">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -210,9 +214,7 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
               />
               {selectedDate && (
                 <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                  <p className="text-sm font-medium text-blue-800">
-                    Selected: {formatSelectedDate()}
-                  </p>
+                  <p className="text-sm font-medium text-blue-800">Selected: {formatSelectedDate()}</p>
                 </div>
               )}
             </div>
@@ -223,9 +225,7 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-gray-900">Available Times</h2>
-                <span className="text-sm text-green-600 font-medium">
-                  {getAvailableSlots()} slots available
-                </span>
+                <span className="text-sm text-green-600 font-medium">{getAvailableSlots()} slots available</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {timeSlots.length > 0 ? (
@@ -249,8 +249,19 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
                       {isLoading && selectedTime === slot.time ? (
                         <div className="flex items-center justify-center">
                           <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                         </div>
                       ) : (
@@ -263,35 +274,36 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
                           )}
                         </div>
                       )}
-                      {!slot.available && (
-                        <span className="absolute top-1 right-1 text-xs text-red-500">•</span>
-                      )}
+                      {!slot.available && <span className="absolute top-1 right-1 text-xs text-red-500">•</span>}
                     </button>
                   ))
                 ) : (
                   <div className="col-span-full text-center py-8">
                     <div className="text-gray-400 mb-2">
                       <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                     </div>
                     <p className="text-sm text-gray-500">No slots available for this day</p>
-                    {dayjs(selectedDate).isBefore(dayjs(), 'day') && (
+                    {dayjs(selectedDate).isBefore(dayjs(), "day") && (
                       <p className="text-xs text-red-600 mt-2">Past dates are not available for booking</p>
                     )}
-                    {dayjs(selectedDate).format('dddd') === 'Friday' && (
+                    {dayjs(selectedDate).format("dddd") === "Friday" && (
                       <p className="text-xs text-amber-600 mt-2">Both hospitals are closed on Fridays</p>
                     )}
-                    {dayjs(selectedDate).isSame(dayjs(), 'day') && getAvailableSlots() === 0 && (
+                    {dayjs(selectedDate).isSame(dayjs(), "day") && getAvailableSlots() === 0 && (
                       <p className="text-xs text-orange-600 mt-2">All remaining slots for today have passed</p>
                     )}
-                    {loading && (
-                      <p className="text-xs text-blue-600 mt-2">Loading available slots...</p>
-                    )}
+                    {loading && <p className="text-xs text-blue-600 mt-2">Loading available slots...</p>}
                   </div>
                 )}
               </div>
-              
+
               {/* Legend */}
               <div className="mt-4 flex items-center justify-center space-x-4 text-xs text-gray-500">
                 <div className="flex items-center">
@@ -317,19 +329,19 @@ const BookingCalendar = ({ onSlotSelect, selectedHospital, onBack }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-amber-700">
             <div className="flex items-start">
               <span className="mr-2">•</span>
-              <span>Arrive 15 minutes early</span>
+              <span>অ্যাপয়েন্টমেন্ট নিশ্চিত করতে ফোনে অথবা অনলাইনে রেজিস্টার করুন</span>
             </div>
             <div className="flex items-start">
               <span className="mr-2">•</span>
-              <span>Bring valid ID & insurance card</span>
+              <span>পরীক্ষার আগে যেকোনো পূর্ববর্তী চিকিৎসার তথ্য ডাক্তারকে জানিয়ে দিন</span>
             </div>
             <div className="flex items-start">
               <span className="mr-2">•</span>
-              <span>Remove contact lenses before exam</span>
+              <span>প্রয়োজনীয় টেস্টের রেজাল্ট ও রিপোর্ট সঙ্গে নিয়ে আসুন</span>
             </div>
             <div className="flex items-start">
               <span className="mr-2">•</span>
-              <span>Consultation fee: $150</span>
+              <span>আপনার স্বাস্থ্য সম্পর্কিত যেকোনো প্রশ্ন ডাক্তারকে সরাসরি জিজ্ঞাসা করুন</span>
             </div>
           </div>
         </div>

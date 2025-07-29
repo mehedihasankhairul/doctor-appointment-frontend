@@ -7,33 +7,33 @@ const HospitalSelection = ({ onHospitalSelect, onBack }) => {
     {
       id: "moon",
       name: "Moon Hospital",
-      address: "123 Main Street, City Center",
-      phone: "+1 (555) 123-4567",
+      address: "Shahid Khawaja Nizamuddin Road, Jhautola, Comilla, Bangladesh",
+      phone: "+88 01836-649409",
       schedule: "03:00 PM to 05:00 PM (Except Friday)",
       visitDays: [0, 1, 2, 3, 4, 6], // Saturday to Thursday (0=Sunday, 6=Saturday)
       timeSlots: [
         { start: "15:00", end: "16:00", display: "03:00 PM - 04:00 PM" },
-        { start: "16:00", end: "17:00", display: "04:00 PM - 05:00 PM" }
+        { start: "16:00", end: "17:00", display: "04:00 PM - 05:00 PM" },
       ],
-      specialties: ["Eye Care", "General Consultation", "Emergency Care"],
-      features: ["Free Parking", "Wheelchair Accessible", "Insurance Accepted"]
+      specialties: ["Cardiology", "General Consultation", "Heart Examination", "Emergency Care"],
+      features: ["Free Parking", "Wheelchair Accessible", "Insurance Accepted"],
     },
     {
       id: "popular",
       name: "Popular Diagnostic Centre",
-      address: "456 Health Avenue, Medical District",
-      phone: "+1 (555) 987-6543",
+      address: "House # 57, Laksam Road, Ramghat, Kandirpar, Cumilla, Bangladesh.",
+      // phone: "+88 01864-569091",
       schedule: "Morning: 08:00 AM to 09:00 AM, Evening: 05:00 PM to 08:00 PM",
       visitDays: [0, 1, 2, 3, 4, 6], // Saturday to Thursday (0=Sunday, 6=Saturday)
       timeSlots: [
         { start: "08:00", end: "09:00", display: "08:00 AM - 09:00 AM" },
         { start: "17:00", end: "18:00", display: "05:00 PM - 06:00 PM" },
         { start: "18:00", end: "19:00", display: "06:00 PM - 07:00 PM" },
-        { start: "19:00", end: "20:00", display: "07:00 PM - 08:00 PM" }
+        { start: "19:00", end: "20:00", display: "07:00 PM - 08:00 PM" },
       ],
-      specialties: ["Diagnostic Services", "Eye Examination", "Preventive Care"],
-      features: ["Modern Equipment", "Quick Reports", "Online Results"]
-    }
+      specialties: ["Cardiology", "General Consultation", "Heart Examination", "Emergency Care"],
+      features: ["Modern Equipment", "Quick Reports", "Online Results"],
+    },
   ];
 
   const handleHospitalChange = (e) => {
