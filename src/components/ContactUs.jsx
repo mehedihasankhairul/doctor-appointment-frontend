@@ -303,23 +303,7 @@ const ContactUs = () => {
           </div>
         </div>
 
-        {/* Emergency Contact */}
-        <div className="mt-12 bg-red-50 border border-red-200 rounded-xl p-6">
-          <div className="flex items-center">
-            <span className="text-red-600 text-2xl mr-3">🚨</span>
-            <div>
-              <h3 className="text-lg font-semibold text-red-800">Emergency Contact</h3>
-              <p className="text-red-700">
-                For urgent cardiovascular or medical emergencies, please call our emergency line at{" "}
-                <a href="tel:+8801711987654" className="font-bold underline">
-                  +880 1711-987654
-                </a>{" "}
-                or visit the nearest emergency room.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+       </div>
     </div>
   );
 };
