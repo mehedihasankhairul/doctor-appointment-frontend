@@ -35,35 +35,49 @@ const ContactUs = () => {
       {/* Animated background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-16 left-8 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute top-32 right-12 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-25 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-24 left-16 w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-40 right-8 w-12 h-12 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full opacity-30 animate-pulse" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute top-1/2 left-1/3 w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full opacity-25 animate-pulse" style={{ animationDelay: '4s' }}></div>
-        
+        <div
+          className="absolute top-32 right-12 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-25 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-24 left-16 w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-20 animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute bottom-40 right-8 w-12 h-12 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full opacity-30 animate-pulse"
+          style={{ animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/3 w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full opacity-25 animate-pulse"
+          style={{ animationDelay: "4s" }}
+        ></div>
+
         {/* Additional decorative shapes */}
-        <div className="absolute top-20 right-1/4 w-8 h-8 bg-gradient-to-br from-teal-400 to-cyan-500 transform rotate-45 opacity-25 animate-pulse" style={{ animationDelay: '5s' }}></div>
-        <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 transform rotate-12 opacity-20 animate-pulse" style={{ animationDelay: '6s' }}></div>
+        <div
+          className="absolute top-20 right-1/4 w-8 h-8 bg-gradient-to-br from-teal-400 to-cyan-500 transform rotate-45 opacity-25 animate-pulse"
+          style={{ animationDelay: "5s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 transform rotate-12 opacity-20 animate-pulse"
+          style={{ animationDelay: "6s" }}
+        ></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Get in Touch
-          </h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions or need to schedule an appointment? We're here to help. 
-            Contact us today and let us take care of your cardiovascular and medical health needs.
+            Have questions or need to schedule an appointment? We're here to help. Contact us today and let us take care
+            of your cardiovascular and medical health needs.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Contact Information
-            </h3>
-            
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+
             <div className="space-y-6">
               {/* Address */}
               <div className="flex items-start space-x-4">
@@ -74,16 +88,22 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Address</h4>
-                  <div className="text-gray-600 space-y-2">
+                  <div className="space-y-4">
                     <div>
-                      <p className="font-medium text-blue-700">Hospital 1 - Ibn Sina Hospital</p>
-                      <p>23 Kha, Dhanmondi R/A Road No 2<br />
-                      Dhaka 1205, Bangladesh</p>
+                      <p className="font-semibold text-blue-700 mb-1">Popular Diagnostic Centre Ltd. </p>
+                      <p className="text-gray-700 text-sm">
+                        House # 57, Laksam Road, Ramghat, Kandirpar, Cumilla, Bangladesh. <br />
+                        <a href="https://populardiagnostic.com" target="_blank" rel="noopener noreferrer">
+                          www.populardiagnostic.com
+                        </a>
+                      </p>
                     </div>
                     <div>
-                      <p className="font-medium text-blue-700">Hospital 2 - United Hospital</p>
-                      <p>Plot 15, Road 71, Gulshan 2<br />
-                      Dhaka 1212, Bangladesh</p>
+                      <p className="font-semibold text-blue-700 mb-1">Moon Hospital</p>
+                      <p className="text-gray-700 text-sm">
+                        Room No #617, Shahid Khawaja Nizamuddin Road, Jhautola, Comilla, Bangladesh <br />
+                        Mobile: +88 01836-649409
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -98,11 +118,21 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Phone</h4>
-                  <p className="text-gray-600">
-                    Main: +880 1711-123456<br />
-                    Emergency: +880 1711-987654<br />
-                    Clinic: +880 2-9612345
-                  </p>
+                  <div className="space-y-3">
+                    <div></div>
+                    <div>
+                      <p className="font-semibold text-green-700">Emergency</p>
+                      <a href="tel:+8801711987654" className="text-gray-700 hover:text-green-600 transition-colors">
+                        +88 01864-569091
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-green-700">Clinic</p>
+                      <a href="tel:+88029612345" className="text-gray-700 hover:text-green-600 transition-colors">
+                        +88 01836-649409
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -116,7 +146,8 @@ const ContactUs = () => {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Email</h4>
                   <p className="text-gray-600">
-                    dr.ganeshcs@gmail.com<br />
+                    dr.ganeshcs@gmail.com
+                    <br />
                     appointments@drganeshcs.com
                   </p>
                 </div>
@@ -131,10 +162,14 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">Consultation Hours</h4>
-                  <div className="text-gray-600">
-                    <p><strong>Saturday - Thursday:</strong> 10:00 AM - 6:00 PM</p>
-                    <p><strong>Friday:</strong> Closed</p>
-                    <p className="text-sm text-blue-600 mt-2">* Available at both hospitals on consultation days</p>
+                  <div className="text-gray-700 text-sm">
+                    <p>
+                      <strong>Sat - Thu:</strong> 10:00 AM - 6:00 PM
+                    </p>
+                    <p>
+                      <strong>Friday:</strong> Closed
+                    </p>
+                    <p className="text-purple-600 mt-1 text-xs">* Available at both hospitals</p>
                   </div>
                 </div>
               </div>
@@ -154,14 +189,15 @@ const ContactUs = () => {
 
           {/* Contact Form */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Send us a Message
-            </h3>
-            
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -176,7 +212,10 @@ const ContactUs = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -194,7 +233,10 @@ const ContactUs = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -208,7 +250,10 @@ const ContactUs = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent mb-2"
+                  >
                     Subject *
                   </label>
                   <select
@@ -230,7 +275,10 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent mb-2"
+                >
                   Message *
                 </label>
                 <textarea

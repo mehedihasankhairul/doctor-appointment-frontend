@@ -26,10 +26,11 @@ const DoctorProfile = () => {
 
     achievements: [
       "Recognized for pioneering integrated treatment of cardiovascular disease with Diabetes, Hormone, Kidney, Liver, and Neurological Complications.",
-      "Earned fellowships from globally respected institutions including FACC, MACP, MACC, and MESC.",
+      "Earned Membership & fellowships from globally respected institutions including , MACP, MACC, and MESC.",
       "Serves as Associate Professor and Chief Consultant, mentoring future physicians in cardiology and internal medicine.",
       "Renowned for advanced diagnostic precision in chest disease, pain medicine, and metabolic disorders.",
       "Invited speaker at national and international medical conferences, including Medical Science Europe.",
+      "European society of cardiology(ESC), American College of Physician (ACP) American College of Cardiology (ACC)",
     ],
 
     services: [
@@ -40,6 +41,13 @@ const DoctorProfile = () => {
       "Lipid Disorder Management",
       "Vascular Management",
       "Liver Treatment",
+      "Coronary artery disease treatment",
+      "Hypertension treatment",
+      "Heart failure treatment",
+      "Valvular heart disease treatment",
+      "Cardiomyopathy treatment",
+      "Diabetes and complications treatment",
+      "Thyroid hormone disorder treatment",
     ],
   };
 
@@ -140,6 +148,85 @@ const DoctorProfile = () => {
       alt: "Patient care",
       caption: "Compassionate patient care",
     },
+    {
+      id: 13,
+      src: "/images/hangouts/hangout13.jpeg",
+      alt: "Health awareness campaign",
+      caption: "Health awareness campaign",
+    },
+    {
+      id: 14,
+      src: "/images/hangouts/hangout14.jpeg",
+      alt: "Medical equipment",
+      caption: "Advanced medical equipment",
+    },
+    {
+      id: 15,
+      src: "/images/hangouts/hangout15.jpeg",
+      alt: "Patient consultation",
+      caption: "Patient consultation session",
+    },
+    {
+      id: 16,
+      src: "/images/hangouts/hangout16.jpeg",
+      alt: "Medical team",
+      caption: "Dedicated medical team",
+    },
+    {
+      id: 17,
+      src: "/images/hangouts/hangout17.jpeg",
+      alt: "Health camp",
+      caption: "Community health camp",
+    },
+    {
+      id: 18,
+      src: "/images/hangouts/hangout18.jpeg",
+      alt: "Medical conference",
+      caption: "International medical conference",
+    },
+    {
+      id: 19,
+      src: "/images/hangouts/hangout21.jpeg",
+      alt: "Patient recovery",
+      caption: "Successful patient recovery",
+    },
+    {
+      id: 20,
+      src: "/images/hangouts/hangout22.jpeg",
+      alt: "Medical team",
+      caption: "Dedicated medical team",
+    },
+    {
+      id: 21,
+      src: "/images/hangouts/hangout23.jpeg",
+      alt: "Health awareness campaign",
+      caption: "Health awareness campaign",
+    },
+    {
+      id: 22,
+      src: "/images/hangouts/hangout24.jpeg",
+      alt: "Medical equipment",
+      caption: "Advanced medical equipment",
+    },
+    {
+      id: 23,
+      src: "/images/hangouts/hangout25.jpeg",
+      alt: "Patient care",
+      caption: "Compassionate patient care",
+    },
+    {
+      id: 24,
+      src: "/images/hangouts/hangout26.jpeg",
+      alt: "Research work",
+      caption: "Research and development",
+    },
+    {
+      id: 25,
+      src: "/images/hangouts/hangout27.jpeg",
+      alt: "Medical conference presentation",
+      caption: "Conference presentation",
+    },
+    
   ];
 
   const blogPosts = [
@@ -308,7 +395,7 @@ results in coughing, short breath,`,
             <span className="mr-3 text-2xl">🏥</span>
             Services & Specializations
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
             {doctorInfo.services.map((service, index) => (
               <div
                 key={index}
@@ -316,7 +403,7 @@ results in coughing, short breath,`,
               >
                 <div className="flex items-center">
                   {/* <span className="text-blue-600 mr-2 text-xl"></span> */}
-                  <span className="font-medium text-gray-600 text-md lg:text-lg">{service}</span>
+                  <span className="font-medium text-gray-600 text-xs md:text-md lg:text-lg">{service}</span>
                 </div>
               </div>
             ))}
