@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GoogleMap from './GoogleMap';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -175,15 +176,29 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* Map Placeholder */}
+            {/* Google Map */}
             <div className="mt-8">
-              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg h-64 flex items-center justify-center border-2 border-blue-200">
-                <div className="text-center">
-                  <span className="text-4xl mb-2 block">🗺️</span>
-                  <p className="text-blue-700 font-medium">Interactive Map</p>
-                  <p className="text-sm text-blue-600">Click to view directions</p>
-                </div>
-              </div>
+              <GoogleMap
+                center={{ lat: 23.249436, lng: 90.957644}}
+                zoom={16}
+                markers={[
+                  {
+                    position: { lat: 23.249436, lng: 90.957644},
+                    title: "Popular Diagnostic Centre Ltd.",
+                    infoWindow: `
+                      <div style="padding: 10px; max-width: 250px;">
+                        <h3 style="margin: 0 0 8px 0; color: #1e40af; font-weight: bold;">🏥 Popular Diagnostic Centre Ltd.</h3>
+                        <p style="margin: 0 0 8px 0; color: #374151; font-size: 14px;">House # 57, Laksam Road, Ramghat, Kandirpar, Cumilla, Bangladesh</p>
+                        <p style="margin: 0 0 8px 0; color: #059669; font-weight: bold;">📞 Emergency: +88 01864-569091</p>
+                        <p style="margin: 0 0 8px 0; color: #059669; font-weight: bold;">📞 Clinic: +88 01836-649409</p>
+                        <p style="margin: 0; color: #7c3aed; font-size: 12px;">✉️ drganeshcs@gmail.com</p>
+                      </div>
+                    `
+                  }
+                ]}
+                className="w-full h-80 rounded-lg shadow-lg border-2 border-blue-200"
+                showDirectionsButton={true}
+              />
             </div>
           </div>
 

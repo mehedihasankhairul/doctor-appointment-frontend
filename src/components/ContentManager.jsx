@@ -1,72 +1,122 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContentUpload from "./ContentUpload";
 import ContentDisplay from "./ContentDisplay";
+import apiService from '../services/api.js';
 
 const ContentManager = ({ isDoctor = false }) => {
-  const [contents, setContents] = useState([
-    // Sample content for demonstration
-    {
-      id: "1",
-      title: "Understanding Heart Disease Prevention",
-      description: "Learn about the key factors that contribute to heart disease and how you can prevent them through lifestyle changes and regular check-ups.",
-      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      platform: "youtube",
-      category: "education",
-      tags: ["heart", "prevention", "health", "lifestyle"],
-      isPublished: true,
-      createdAt: "2024-01-15T10:00:00Z",
-      updatedAt: "2024-01-15T10:00:00Z"
-    },
-    {
-      id: "2",
-      title: "Patient Success Story - Recovery Journey",
-      description: "Watch how our patient recovered from a major cardiac procedure and returned to an active lifestyle with our comprehensive care program.",
-      url: "https://www.facebook.com/watch/video/123456789",
-      embedUrl: "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2Fvideo%2F123456789&show_text=0&width=560",
-      platform: "facebook",
-      category: "testimonial",
-      tags: ["recovery", "success", "patient", "cardiac"],
-      isPublished: true,
-      createdAt: "2024-01-10T14:30:00Z",
-      updatedAt: "2024-01-10T14:30:00Z"
-    },
-    {
-      id: "3",
-      title: "5 Daily Tips for Heart Health",
-      description: "Simple daily habits that can significantly improve your cardiovascular health. Easy to follow tips that you can start implementing today.",
-      url: "https://www.youtube.com/watch?v=example123",
-      embedUrl: "https://www.youtube.com/embed/example123",
-      platform: "youtube",
-      category: "tips",
-      tags: ["daily", "tips", "heart", "health", "lifestyle"],
-      isPublished: false,
-      createdAt: "2024-01-05T09:15:00Z",
-      updatedAt: "2024-01-05T09:15:00Z"
-    }
-  ]);
+  const [contents, setContents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [activeTab, setActiveTab] = useState(isDoctor ? 'upload' : 'display');
   const [editingContent, setEditingContent] = useState(null);
 
-  const handleContentSave = (contentData) => {
-    if (editingContent) {
-      // Update existing content
-      setContents(prev => 
-        prev.map(content => 
-          content.id === editingContent.id 
-            ? { ...contentData, id: editingContent.id }
-            : content
-        )
-      );
-      setEditingContent(null);
-    } else {
-      // Add new content
-      setContents(prev => [...prev, contentData]);
+  // Fetch content from API
+  const fetchContent = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await apiService.getContent();
+      
+      // Transform API data to match component structure
+      const transformedContent = response.content.map(item => ({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        url: item.content_url,
+        embedUrl: getEmbedUrl(item.content_url, item.content_type),
+        platform: item.content_type,
+        category: item.category,
+        tags: item.tags,
+        isPublished: item.is_published,
+        isFeatured: item.is_featured,
+        author: item.author?.full_name || 'Unknown',
+        viewCount: item.view_count || 0,
+        likeCount: item.like_count || 0,
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+        publishedDate: item.published_date
+      }));
+      
+      setContents(transformedContent);
+    } catch (err) {
+      console.error('Failed to fetch content:', err);
+      setError('Failed to load content. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    
-    // Switch to display tab after saving
-    setActiveTab('display');
+  };
+
+  // Helper function to generate embed URLs
+  const getEmbedUrl = (url, contentType) => {
+    if (contentType === 'youtube') {
+      const videoId = extractYouTubeVideoId(url);
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    }
+    return url;
+  };
+
+  // Extract YouTube video ID from URL
+  const extractYouTubeVideoId = (url) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  // Load content on component mount
+  useEffect(() => {
+    fetchContent();
+  }, []);
+
+  const handleContentSave = async (contentData) => {
+    try {
+      if (editingContent) {
+        // Update existing content via API
+        const updatedContent = await apiService.updateContent(editingContent.id, {
+          title: contentData.title,
+          description: contentData.description,
+          content_type: contentData.platform,
+          content_url: contentData.url,
+          thumbnail_url: contentData.thumbnailUrl,
+          category: contentData.category,
+          tags: contentData.tags,
+          is_published: contentData.isPublished,
+          is_featured: contentData.isFeatured
+        });
+        
+        // Update local state
+        setContents(prev => 
+          prev.map(content => 
+            content.id === editingContent.id 
+              ? { ...contentData, id: editingContent.id, updatedAt: new Date().toISOString() }
+              : content
+          )
+        );
+        setEditingContent(null);
+      } else {
+        // Create new content via API
+        const newContent = await apiService.createContent({
+          title: contentData.title,
+          description: contentData.description,
+          content_type: contentData.platform,
+          content_url: contentData.url,
+          thumbnail_url: contentData.thumbnailUrl,
+          category: contentData.category,
+          tags: contentData.tags,
+          is_published: contentData.isPublished,
+          is_featured: contentData.isFeatured
+        });
+        
+        // Refresh content list
+        await fetchContent();
+      }
+      
+      // Switch to display tab after saving
+      setActiveTab('display');
+    } catch (error) {
+      console.error('Failed to save content:', error);
+      alert('Failed to save content. Please try again.');
+    }
   };
 
   const handleEdit = (content) => {
@@ -74,20 +124,38 @@ const ContentManager = ({ isDoctor = false }) => {
     setActiveTab('upload');
   };
 
-  const handleDelete = (contentId) => {
+  const handleDelete = async (contentId) => {
     if (window.confirm('Are you sure you want to delete this content?')) {
-      setContents(prev => prev.filter(content => content.id !== contentId));
+      try {
+        await apiService.deleteContent(contentId);
+        setContents(prev => prev.filter(content => content.id !== contentId));
+      } catch (error) {
+        console.error('Failed to delete content:', error);
+        alert('Failed to delete content. Please try again.');
+      }
     }
   };
 
-  const handleTogglePublish = (contentId) => {
-    setContents(prev => 
-      prev.map(content => 
-        content.id === contentId 
-          ? { ...content, isPublished: !content.isPublished, updatedAt: new Date().toISOString() }
-          : content
-      )
-    );
+  const handleTogglePublish = async (contentId) => {
+    try {
+      const content = contents.find(c => c.id === contentId);
+      if (!content) return;
+      
+      await apiService.updateContent(contentId, {
+        is_published: !content.isPublished
+      });
+      
+      setContents(prev => 
+        prev.map(content => 
+          content.id === contentId 
+            ? { ...content, isPublished: !content.isPublished, updatedAt: new Date().toISOString() }
+            : content
+        )
+      );
+    } catch (error) {
+      console.error('Failed to toggle publish status:', error);
+      alert('Failed to update content. Please try again.');
+    }
   };
 
   const handleCancelEdit = () => {
@@ -167,14 +235,73 @@ const ContentManager = ({ isDoctor = false }) => {
           </div>
         )}
 
-        {activeTab === 'display' && (
-          <ContentDisplay
-            contents={displayContents}
-            onEdit={isDoctor ? handleEdit : undefined}
-            onDelete={isDoctor ? handleDelete : undefined}
-            onTogglePublish={isDoctor ? handleTogglePublish : undefined}
-            isDoctor={isDoctor}
-          />
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+            <span className="ml-3 text-gray-600">Loading content...</span>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+              <div className="text-red-600 mb-2">
+                <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-red-800 mb-2">Error Loading Content</h3>
+              <p className="text-red-700 mb-4">{error}</p>
+              <button
+                onClick={fetchContent}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Content Display */}
+        {!loading && !error && activeTab === 'display' && (
+          <>
+            {contents.length === 0 ? (
+              <div className="max-w-2xl mx-auto text-center">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-12">
+                  <div className="text-gray-400 mb-4">
+                    <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h4a1 1 0 110 2h-1v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6H3a1 1 0 110-2h4zM9 6v11a1 1 0 001 1h4a1 1 0 001-1V6H9z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">No Content Available</h3>
+                  <p className="text-gray-600 mb-4">
+                    {isDoctor 
+                      ? 'You haven\'t created any content yet. Click "Upload Content" to get started.' 
+                      : 'No published content is available at the moment.'}
+                  </p>
+                  {isDoctor && (
+                    <button
+                      onClick={() => setActiveTab('upload')}
+                      className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                    >
+                      Upload First Content
+                    </button>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <ContentDisplay
+                contents={displayContents}
+                onEdit={isDoctor ? handleEdit : undefined}
+                onDelete={isDoctor ? handleDelete : undefined}
+                onTogglePublish={isDoctor ? handleTogglePublish : undefined}
+                isDoctor={isDoctor}
+                loading={loading}
+              />
+            )}
+          </>
         )}
 
         {/* Quick Stats for Doctor */}

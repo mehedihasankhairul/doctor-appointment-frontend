@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GoogleMap from './GoogleMap';
 
 const DoctorProfile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -674,6 +675,35 @@ results in coughing, short breath,`,
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Google Map */}
+          <div className="mt-8">
+            <GoogleMap
+              center={{ lat: 23.249436, lng: 90.957644 }}
+              zoom={16}
+              markers={[
+                {
+                  position: { lat: 23.249436, lng: 90.957644 },
+                  title: "Popular Diagnostic Centre Ltd.",
+                  infoWindow: `
+                    <div style="padding: 12px; max-width: 280px;">
+                      <h3 style="margin: 0 0 10px 0; color: #1e40af; font-weight: bold; font-size: 16px;">🏥 Popular Diagnostic Centre Ltd.</h3>
+                      <p style="margin: 0 0 8px 0; color: #374151; font-size: 13px;">House # 57, Laksam Road, Ramghat, Kandirpar, Cumilla, Bangladesh</p>
+                      <div style="border-top: 1px solid #e5e7eb; padding-top: 8px; margin-top: 8px;">
+                        <p style="margin: 0 0 6px 0; color: #059669; font-weight: bold; font-size: 14px;">📞 Dr. Ganesh Chandra Saurav</p>
+                        <p style="margin: 0 0 4px 0; color: #6b7280; font-size: 12px;">Cardiologist & Internal Medicine</p>
+                        <p style="margin: 0 0 4px 0; color: #059669; font-size: 12px;">Emergency: +88 01864-569091</p>
+                        <p style="margin: 0 0 4px 0; color: #059669; font-size: 12px;">Clinic: +88 01836-649409</p>
+                        <p style="margin: 0; color: #7c3aed; font-size: 11px;">✉️ drganeshcs@gmail.com</p>
+                      </div>
+                    </div>
+                  `
+                }
+              ]}
+              className="w-full h-80 rounded-lg shadow-lg border-2 border-blue-200"
+              showDirectionsButton={true}
+            />
           </div>
 
           {/* Emergency Notice */}
