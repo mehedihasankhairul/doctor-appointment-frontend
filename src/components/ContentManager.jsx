@@ -262,6 +262,11 @@ const ContentManager = ({ isDoctor = false }) => {
                 Try Again
               </button>
             </div>
+            
+            {/* Debug API Test */}
+            <div className="mt-6">
+              <ApiTest />
+            </div>
           </div>
         )}
 

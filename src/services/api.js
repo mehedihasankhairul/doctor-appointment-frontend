@@ -22,7 +22,7 @@ class ApiService {
         ...(this.authToken && { Authorization: `Bearer ${this.authToken}` }),
         ...options.headers,
       },
-      // credentials: 'include', // Include credentials for CORS - temporarily disabled
+      credentials: 'include', // Include credentials for CORS
       ...options,
     };
 
