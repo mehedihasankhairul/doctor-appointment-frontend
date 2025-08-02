@@ -22,21 +22,30 @@ class ApiService {
         ...(this.authToken && { Authorization: `Bearer ${this.authToken}` }),
         ...options.headers,
       },
-      credentials: 'include', // Include credentials for CORS
+      // credentials: 'include', // Include credentials for CORS - temporarily disabled
       ...options,
     };
 
+    console.log('🌐 Making API request:', {
+      url,
+      method: config.method || 'GET',
+      headers: config.headers
+    });
+
     try {
       const response = await fetch(url, config);
+      console.log('📡 API response status:', response.status, response.statusText);
+      
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.error || `HTTP error! status: ${response.status}`);
       }
 
+      console.log('✅ API request successful');
       return data;
     } catch (error) {
-      console.error('API Request Error:', error);
+      console.error('❌ API Request Error:', error);
       throw error;
     }
   }

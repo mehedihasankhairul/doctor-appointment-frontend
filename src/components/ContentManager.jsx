@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ContentUpload from "./ContentUpload";
 import ContentDisplay from "./ContentDisplay";
+import ApiTest from "./ApiTest";
 import apiService from '../services/api.js';
 
 const ContentManager = ({ isDoctor = false }) => {
