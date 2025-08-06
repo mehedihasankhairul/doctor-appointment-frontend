@@ -3,6 +3,7 @@ import ContentUpload from "./ContentUpload";
 import ContentDisplay from "./ContentDisplay";
 import ApiTest from "./ApiTest";
 import apiService from '../services/api.js';
+import { useContent } from '../contexts/ContentContext.jsx';
 
 const ContentManager = ({ isDoctor = false }) => {
   const [contents, setContents] = useState([]);
@@ -11,13 +12,20 @@ const ContentManager = ({ isDoctor = false }) => {
 
   const [activeTab, setActiveTab] = useState(isDoctor ? 'upload' : 'display');
   const [editingContent, setEditingContent] = useState(null);
+  
+  // Use ContentContext to trigger global content refresh
+  const { refreshContent } = useContent();
 
   // Fetch content from API
   const fetchContent = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await apiService.getContent();
+      
+      // For doctors, use the admin endpoint to get all content
+      const response = isDoctor 
+        ? await apiService.get('/content/admin')
+        : await apiService.getContent();
       
       // Transform API data to match component structure
       const transformedContent = response.content.map(item => ({
@@ -85,26 +93,41 @@ const ContentManager = ({ isDoctor = false }) => {
           is_featured: contentData.isFeatured
         });
         
-        // Update local state with the returned data
+        // Update local state with the API response data
+        const transformedUpdatedContent = {
+          id: updatedContent.content.id,
+          title: updatedContent.content.title,
+          description: updatedContent.content.description,
+          url: updatedContent.content.content_url,
+          embedUrl: getEmbedUrl(updatedContent.content.content_url, updatedContent.content.content_type),
+          platform: updatedContent.content.content_type,
+          category: updatedContent.content.category,
+          tags: updatedContent.content.tags,
+          isPublished: updatedContent.content.is_published,
+          isFeatured: updatedContent.content.is_featured,
+          author: updatedContent.content.author?.full_name || 'Unknown',
+          viewCount: updatedContent.content.view_count || 0,
+          likeCount: updatedContent.content.like_count || 0,
+          createdAt: updatedContent.content.createdAt,
+          updatedAt: updatedContent.content.updatedAt,
+          publishedDate: updatedContent.content.published_date
+        };
+        
         setContents(prev => 
           prev.map(content => 
-            content.id === editingContent.id 
-              ? {
-                  ...contentData,
-                  id: editingContent.id,
-                  updatedAt: new Date().toISOString(),
-                  author: content.author, // preserve author info
-                  createdAt: content.createdAt,
-                  viewCount: content.viewCount,
-                  likeCount: content.likeCount
-                }
-              : content
+            content.id === editingContent.id ? transformedUpdatedContent : content
           )
         );
         setEditingContent(null);
         
         // Show success message
         alert('Content updated successfully!');
+        
+        // Refresh content to ensure sync
+        setTimeout(() => {
+          fetchContent();
+          refreshContent(); // Trigger global content refresh
+        }, 1000);
       } else {
         // Try to create new content via API
         try {
@@ -166,13 +189,30 @@ Would you like to go to the Manage Content tab to edit existing videos?`;
   };
 
   const handleDelete = async (contentId) => {
-    if (window.confirm('Are you sure you want to delete this content?')) {
+    const contentToDelete = contents.find(c => c.id === contentId);
+    const confirmMessage = `Are you sure you want to delete "${contentToDelete?.title}"?\n\nThis action cannot be undone.`;
+    
+    if (window.confirm(confirmMessage)) {
       try {
         await apiService.deleteContent(contentId);
+        
+        // Remove from local state immediately
         setContents(prev => prev.filter(content => content.id !== contentId));
+        
+        // Show success message
+        alert('Content deleted successfully!');
+        
+        // Refresh content to ensure sync
+        setTimeout(() => {
+          fetchContent();
+          refreshContent(); // Trigger global content refresh
+        }, 1000);
       } catch (error) {
         console.error('Failed to delete content:', error);
-        alert('Failed to delete content. Please try again.');
+        alert(`Failed to delete content: ${error.message || 'Unknown error occurred'}`);
+        
+        // Refresh to restore state in case of error
+        fetchContent();
       }
     }
   };
@@ -182,20 +222,38 @@ Would you like to go to the Manage Content tab to edit existing videos?`;
       const content = contents.find(c => c.id === contentId);
       if (!content) return;
       
-      await apiService.updateContent(contentId, {
-        is_published: !content.isPublished
-      });
+      const newPublishState = !content.isPublished;
       
+      // Optimistically update the UI
       setContents(prev => 
-        prev.map(content => 
-          content.id === contentId 
-            ? { ...content, isPublished: !content.isPublished, updatedAt: new Date().toISOString() }
-            : content
+        prev.map(item => 
+          item.id === contentId 
+            ? { ...item, isPublished: newPublishState, updatedAt: new Date().toISOString() }
+            : item
         )
       );
+      
+      // Send update to API
+      await apiService.updateContent(contentId, {
+        title: content.title,
+        description: content.description,
+        content_type: content.platform,
+        content_url: content.url,
+        category: content.category,
+        tags: content.tags,
+        is_published: newPublishState
+      });
+      
+      alert(`Content ${newPublishState ? 'published' : 'unpublished'} successfully!`);
+      
+      // Refresh content to ensure sync
+      setTimeout(() => fetchContent(), 1000);
     } catch (error) {
       console.error('Failed to toggle publish status:', error);
-      alert('Failed to update content. Please try again.');
+      alert(`Failed to ${content.isPublished ? 'unpublish' : 'publish'} content: ${error.message || 'Unknown error occurred'}`);
+      
+      // Revert optimistic update on error
+      fetchContent();
     }
   };
 

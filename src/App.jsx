@@ -15,6 +15,7 @@ import DoctorLogin from "./components/DoctorLogin";
 import SecureDoctorPortal from "./components/SecureDoctorPortal";
 import DoctorProfile from "./components/DoctorProfile";
 import { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
+import { ContentProvider } from "./contexts/ContentContext.jsx";
 import { isPortalSubdomain, getMainDomainUrl } from "./utils/subdomain";
 
 function App() {
@@ -117,15 +118,18 @@ function App() {
   if (activeSection === 'doctor-portal') {
     return (
       <AuthProvider>
-        <SecureDoctorPortal 
-          onTogglePortal={handleToggleDoctorPortal}
-        />
+        <ContentProvider>
+          <SecureDoctorPortal 
+            onTogglePortal={handleToggleDoctorPortal}
+          />
+        </ContentProvider>
       </AuthProvider>
     );
   }
 
   return (
     <AuthProvider>
+      <ContentProvider>
       <div className="min-h-screen bg-white">
         <Navbar activeSection={activeSection} onSectionChange={handleSectionChange} />
         
@@ -228,6 +232,7 @@ function App() {
         </div>
       )}
       </div>
+      </ContentProvider>
     </AuthProvider>
   );
 }

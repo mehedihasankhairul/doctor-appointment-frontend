@@ -1,12 +1,32 @@
 import { useState } from "react";
+import { useContent } from '../contexts/ContentContext.jsx';
 
 const HomeContentSection = ({ onBookAppointment }) => {
   const [activeFilter, setActiveFilter] = useState('all');
+  
+  // Use ContentContext for real-time data synchronization
+  const { content, loading, error, forceRefresh } = useContent();
 
-  // ==========================================
-  // SAMPLE DATA - In production, this would come from an API
-  // ==========================================
-  const sampleContent = [
+  // Helper function to generate embed URLs
+  const getEmbedUrl = (url, contentType) => {
+    if (contentType === 'youtube') {
+      const videoId = extractYouTubeVideoId(url);
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    } else if (contentType === 'facebook') {
+      return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0&width=560`;
+    }
+    return url;
+  };
+
+  // Extract YouTube video ID from URL
+  const extractYouTubeVideoId = (url) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  // Fallback sample content (for when API fails)
+  const getSampleContent = () => [
     {
       id: "1",
       title: "Understanding Heart Disease Prevention",
@@ -84,8 +104,8 @@ const HomeContentSection = ({ onBookAppointment }) => {
   // COMPUTED VALUES
   // ==========================================
   const displayedContent = activeFilter === 'all' 
-    ? sampleContent 
-    : sampleContent.filter(content => content.category === activeFilter);
+    ? content 
+    : content.filter(item => item.category === activeFilter);
 
   // ==========================================
   // UTILITY FUNCTIONS
@@ -263,12 +283,55 @@ const HomeContentSection = ({ onBookAppointment }) => {
         <SectionHeader />
         <CategoryFilters />
         
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+            <span className="ml-3 text-gray-600">Loading content...</span>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="max-w-2xl mx-auto text-center mb-8">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+              <div className="text-amber-600 mb-2">
+                <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-amber-800 mb-2">Content Loading Issue</h3>
+              <p className="text-amber-700 mb-4">{error}</p>
+              <button
+                onClick={forceRefresh}
+                className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayedContent.map((content) => (
-            <ContentCard key={content.id} content={content} />
-          ))}
-        </div>
+        {!loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {displayedContent.length > 0 ? (
+              displayedContent.map((content) => (
+                <ContentCard key={content.id} content={content} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <div className="text-gray-400 mb-4">
+                  <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h4a1 1 0 110 2h-1v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6H3a1 1 0 110-2h4zM9 6v11a1 1 0 001 1h4a1 1 0 001-1V6H9z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-medium text-gray-900 mb-2">No Content Available</h3>
+                <p className="text-gray-600">No published content is available for this category at the moment.</p>
+              </div>
+            )}
+          </div>
+        )}
 
         <CallToAction />
       </div>
