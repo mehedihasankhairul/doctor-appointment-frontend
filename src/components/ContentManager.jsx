@@ -85,38 +85,78 @@ const ContentManager = ({ isDoctor = false }) => {
           is_featured: contentData.isFeatured
         });
         
-        // Update local state
+        // Update local state with the returned data
         setContents(prev => 
           prev.map(content => 
             content.id === editingContent.id 
-              ? { ...contentData, id: editingContent.id, updatedAt: new Date().toISOString() }
+              ? {
+                  ...contentData,
+                  id: editingContent.id,
+                  updatedAt: new Date().toISOString(),
+                  author: content.author, // preserve author info
+                  createdAt: content.createdAt,
+                  viewCount: content.viewCount,
+                  likeCount: content.likeCount
+                }
               : content
           )
         );
         setEditingContent(null);
-      } else {
-        // Create new content via API
-        const newContent = await apiService.createContent({
-          title: contentData.title,
-          description: contentData.description,
-          content_type: contentData.platform,
-          content_url: contentData.url,
-          thumbnail_url: contentData.thumbnailUrl,
-          category: contentData.category,
-          tags: contentData.tags,
-          is_published: contentData.isPublished,
-          is_featured: contentData.isFeatured
-        });
         
-        // Refresh content list
-        await fetchContent();
+        // Show success message
+        alert('Content updated successfully!');
+      } else {
+        // Try to create new content via API
+        try {
+          const newContent = await apiService.createContent({
+            title: contentData.title,
+            description: contentData.description,
+            content_type: contentData.platform,
+            content_url: contentData.url,
+            thumbnail_url: contentData.thumbnailUrl,
+            category: contentData.category,
+            tags: contentData.tags,
+            is_published: contentData.isPublished,
+            is_featured: contentData.isFeatured
+          });
+          
+          // Refresh content list
+          await fetchContent();
+          alert('Content created successfully!');
+        } catch (createError) {
+          console.error('Content creation failed:', createError);
+          
+          // Show user-friendly error message with guidance
+          const errorMessage = `Unable to create new content at this time. 
+
+This is a known issue with the current server configuration. 
+
+As a workaround, you can:
+1. Edit existing content using the "Manage Content" tab
+2. Update any existing video by clicking the edit button
+3. Contact the administrator to resolve the server issue
+
+Would you like to go to the Manage Content tab to edit existing videos?`;
+          
+          if (window.confirm(errorMessage)) {
+            setActiveTab('display');
+          }
+          return; // Don't switch tabs on error
+        }
       }
       
       // Switch to display tab after saving
       setActiveTab('display');
     } catch (error) {
       console.error('Failed to save content:', error);
-      alert('Failed to save content. Please try again.');
+      
+      // Show more detailed error message
+      const isNetworkError = error.message?.includes('fetch');
+      const errorMessage = isNetworkError 
+        ? 'Network error: Please check your internet connection and try again.'
+        : `Failed to save content: ${error.message || 'Unknown error occurred'}`;
+      
+      alert(errorMessage);
     }
   };
 
